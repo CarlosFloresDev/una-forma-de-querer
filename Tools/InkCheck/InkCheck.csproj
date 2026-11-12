@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Compila los .ink con el compilador del paquete de Unity y los recorre hasta el final
+       con cada DECISION_C3, eligiendo siempre la primera y siempre la última opción.
+       Requiere que Unity haya compilado el proyecto una vez (Library/ScriptAssemblies). -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ink-Libraries">
+      <HintPath>../../Game/Library/ScriptAssemblies/Ink-Libraries.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
