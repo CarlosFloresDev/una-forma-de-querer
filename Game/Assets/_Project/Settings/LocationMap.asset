@@ -45,3 +45,21 @@ MonoBehaviour:
     unityScene: Yanahuara
   - scriptScene: 1.12
     unityScene: Azotea
+  - scriptScene: 2.1
+    unityScene: BusMollendo
+  - scriptScene: 2.2
+    unityScene: CasaBenavides
+  - scriptScene: 2.3
+    unityScene: Playa
+  - scriptScene: 2.4
+    unityScene: Playa
+  - scriptScene: 2.5
+    unityScene: Feria
+  - scriptScene: 2.6
+    unityScene: CastilloForga
+  - scriptScene: 2.7
+    unityScene: Fogata
+  - scriptScene: 2.8
+    unityScene: Muelle
+  - scriptScene: 2.9
+    unityScene: BusMollendo

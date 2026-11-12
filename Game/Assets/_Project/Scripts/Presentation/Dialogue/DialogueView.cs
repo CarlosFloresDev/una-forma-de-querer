@@ -26,6 +26,9 @@ namespace UFQ.Presentation.Dialogue
         private string _typingFull = string.Empty;
         private float _typingProgress;
         private int _picked = -1;
+        private bool _trembling;
+        private bool _fleeting;
+        private float _fleetingTimer;
 
         public bool IsTyping => _typingLabel != null && _typingProgress < _typingFull.Length;
 
@@ -51,6 +54,8 @@ namespace UFQ.Presentation.Dialogue
 
         public void Close()
         {
+            _trembling = false;
+            _fleeting = false;
             _root?.AddToClassList(Hidden);
             HideAll();
         }
@@ -58,6 +63,15 @@ namespace UFQ.Presentation.Dialogue
         public void ShowLine(DialogueLine line, bool offerSave)
         {
             HideAll();
+            // La Lente (#lente): el globo tiembla. La versión «algo más» (#reescrita) es más cálida.
+            _trembling = line.HasTag("lente");
+            _bubble.EnableInClassList("globo--lente", _trembling);
+            _bubble.EnableInClassList("globo--reescrita", line.HasTag("reescrita"));
+            _bubble.style.translate = new Translate(0, 0);
+            // #fugaz: la frase se desvanece enseguida (2.6: Mateo mira su mano, no a Abril).
+            _fleeting = line.HasTag("fugaz");
+            _fleetingTimer = 0f;
+            _text.style.opacity = 1f;
             switch (line.Kind)
             {
                 case LineKind.Speech:
@@ -133,6 +147,18 @@ namespace UFQ.Presentation.Dialogue
 
         private void Update()
         {
+            if (_trembling && _bubble != null)
+            {
+                var t = Time.unscaledTime * 38f;
+                _bubble.style.translate = new Translate(Mathf.Sin(t) * 1.6f, Mathf.Cos(t * 1.3f) * 0.9f);
+            }
+
+            if (_fleeting && !IsTyping)
+            {
+                _fleetingTimer += Time.unscaledDeltaTime;
+                _text.style.opacity = Mathf.Lerp(1f, 0.18f, Mathf.InverseLerp(0.6f, 1.6f, _fleetingTimer));
+            }
+
             if (!IsTyping) return;
             _typingProgress = Mathf.Min(_typingFull.Length, _typingProgress + charactersPerSecond * Time.unscaledDeltaTime);
             _typingLabel.text = _typingFull.Substring(0, Mathf.FloorToInt(_typingProgress));

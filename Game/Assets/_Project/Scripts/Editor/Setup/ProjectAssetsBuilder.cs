@@ -81,6 +81,8 @@ namespace UFQ.Editor.Setup
                 ("1.5", "Tintero"), ("1.6", "Mercado"), ("1.6m", "Mercado"), ("1.6p", "Picanteria"),
                 ("1.6b", "Biblioteca"), ("1.7", "Azotea"), ("1.8", "Aula"), ("1.9", "Libreria"),
                 ("1.10", "Tintero"), ("1.11", "Yanahuara"), ("1.12", "Azotea"),
+                ("2.1", "BusMollendo"), ("2.2", "CasaBenavides"), ("2.3", "Playa"), ("2.4", "Playa"),
+                ("2.5", "Feria"), ("2.6", "CastilloForga"), ("2.7", "Fogata"), ("2.8", "Muelle"), ("2.9", "BusMollendo"),
             };
 
             var entries = new List<LocationMap.Entry>();

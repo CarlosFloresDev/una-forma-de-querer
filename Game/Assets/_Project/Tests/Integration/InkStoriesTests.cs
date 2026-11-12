@@ -24,6 +24,7 @@ namespace UFQ.Tests.Integration
 
         [TestCase("Prologo")]
         [TestCase("Capitulo1")]
+        [TestCase("Capitulo2")]
         public void Story_CompilesWithoutErrors(string name)
         {
             var file = Load(name);
@@ -34,6 +35,7 @@ namespace UFQ.Tests.Integration
 
         [TestCase("Prologo")]
         [TestCase("Capitulo1")]
+        [TestCase("Capitulo2")]
         public void Story_CanBePlayedToTheEnd_AlwaysChoosingFirstOption(string name)
         {
             var lines = Play(name, out var narrative);
@@ -43,6 +45,7 @@ namespace UFQ.Tests.Integration
 
         [TestCase("Prologo")]
         [TestCase("Capitulo1")]
+        [TestCase("Capitulo2")]
         public void SignalAndGestureTags_UseIdsFromTheCatalog(string name)
         {
             foreach (var line in Play(name, out _))
@@ -62,6 +65,30 @@ namespace UFQ.Tests.Integration
                 if (line.SignalId != null) signals.Add(line.SignalId);
 
             Assert.That(signals, Is.EquivalentTo(new[] { "S01", "S02", "S03", "S04", "S05", "S06", "S07" }));
+        }
+
+        [Test]
+        public void Chapter2_MarksItsFourSignals_AndLensMoments()
+        {
+            var signals = new HashSet<string>();
+            var lens = new HashSet<string>();
+            foreach (var line in Play("Capitulo2", out _))
+            {
+                if (line.SignalId != null) signals.Add(line.SignalId);
+                if (line.TryGetTag("lente", out var moment)) lens.Add(moment);
+            }
+
+            Assert.That(signals, Is.EquivalentTo(new[] { "S08", "S09", "S10", "S11" }));
+            Assert.That(lens, Is.EquivalentTo(new[] { "2.5b", "2.6" }));
+        }
+
+        [Test]
+        public void Chapter2_FirstOptions_ReachTheDomain()
+        {
+            Play("Capitulo2", out var narrative);
+            Assert.That(narrative.State.HasNotedGesture("V4"), Is.True, "Responder con la conchita nota V4");
+            Assert.That(narrative.State.NicoResponse, Is.EqualTo(NicoResponse.Anger));
+            Assert.That(narrative.State.Lens, Is.EqualTo(0), "Leer como amistad no suma LENTE");
         }
 
         [Test]

@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/Locations/Mercado.unity
     guid: b15aad0b3a3536c4b87c99c096bd2c13
   - enabled: 1
+    path: Assets/_Project/Scenes/Locations/Picanteria.unity
+    guid: 7f2fc395f3e2d8f44a7c42add3462ff4
+  - enabled: 1
     path: Assets/_Project/Scenes/Locations/Terminal.unity
     guid: 3593f46531260644c8fc5700d63b52bd
   - enabled: 1

@@ -174,3 +174,19 @@
     font-size: 14px;
     color: rgba(250, 244, 232, 0.55);
 }
+
+/* --- La Lente: frase con doble lectura -------------------------------- */
+.globo--lente {
+    border-color: rgba(217, 164, 65, 0.55);
+}
+
+/* Versión «algo más»: más cálida, más redonda. Es lo que Mateo QUIERE leer. */
+.globo--reescrita .globo__texto {
+    color: rgb(150, 70, 52);
+    -unity-font-style: italic;
+    font-size: 27px;
+}
+
+.globo--reescrita {
+    background-color: rgba(250, 232, 210, 0.97);
+}

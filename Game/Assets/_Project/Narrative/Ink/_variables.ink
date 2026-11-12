@@ -15,6 +15,9 @@ VAR NICO_RESP = "None"
 VAR HONESTO_VALE = false
 VAR ESPERA_TOTAL = 0
 
+// Estado local de la historia (solo afecta al texto, no al dominio):
+VAR promesa_conchita = false   // 2.1: Mateo prometió una conchita a Valeria
+
 EXTERNAL guardar_senal(id)
 EXTERNAL notar_gesto(id)
 EXTERNAL recuerdo_papa(id)
