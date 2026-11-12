@@ -33,10 +33,11 @@ VAR _ids = ""
 
 === function _contar_una_vez(id)
 // Devuelve true solo la primera vez que se ve este id.
-{ _ids ? ("|" + id + "|"):
+// Ojo: «|» está reservado en Ink (alternativas); por eso el separador es «;».
+{ _ids ? (";" + id + ";"):
     ~ return false
 }
-~ _ids = _ids + "|" + id + "|"
+~ _ids = _ids + ";" + id + ";"
 ~ return true
 
 === function guardar_senal(id)
