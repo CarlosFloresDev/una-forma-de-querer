@@ -99,13 +99,13 @@ Semanas del proyecto. El grupo recorre la ciudad buscando lugares que no salen e
 * {c1_mercado and c1_picanteria and c1_biblioteca} [Seguir] -> c1_madrugada
 
 = c1_mercado
-#juego:explorar_san_camilo
+#escena:1.6m #juego:explorar_san_camilo
 RELOJERO: Cincuenta años arreglando el tiempo de los demás. El mío nunca lo arreglé.
 Abril compra fruta para la señora del puesto de al lado, «que está sola». #accion
 -> c1_montaje_hub
 
 = c1_picanteria
-#juego:explorar_sachaca
+#escena:1.6p #juego:explorar_sachaca
 DOÑA LUCHA: Aquí nadie se va con hambre.
 Abril le regala a Doña Lucha un dibujo de su picantería «para que lo cuelgue». #accion
 -> c1_montaje_hub

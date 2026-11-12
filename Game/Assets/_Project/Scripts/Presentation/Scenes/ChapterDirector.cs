@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using UFQ.Core.Narrative;
 using UFQ.Presentation.Dialogue;
@@ -8,17 +11,31 @@ using VContainer;
 namespace UFQ.Presentation.Scenes
 {
     /// <summary>
-    /// Arranca la historia de una escena (p. ej. el Prólogo en la azotea).
-    /// Marca el capítulo en el dominio y entrega el control al DialogueRunner.
+    /// Dirige la partida: reproduce las historias de cada capítulo en orden
+    /// (Prólogo → Capítulo 1 → …) y retoma desde el capítulo guardado.
+    /// Cada historia de Ink lleva a Mateo de un lugar a otro con #escena.
     /// </summary>
     public sealed class ChapterDirector : MonoBehaviour, ISceneInjectable
     {
-        [SerializeField] private string storyId = "Prologo";
-        [SerializeField] private Chapter chapter = Chapter.Prologue;
+        [Serializable]
+        public struct Step
+        {
+            public Chapter chapter;
+            public string storyId;
+        }
+
+        [SerializeField] private List<Step> steps = new List<Step>
+        {
+            new Step { chapter = Chapter.Prologue, storyId = "Prologo" },
+            new Step { chapter = Chapter.Chapter1Arequipa, storyId = "Capitulo1" },
+        };
+
         [SerializeField] private bool playOnStart = true;
 
         private DialogueRunner _runner;
         private NarrativeService _narrative;
+
+        public event Action<Chapter> StepFinished;
 
         [Inject]
         public void Construct(DialogueRunner runner, NarrativeService narrative)
@@ -29,10 +46,10 @@ namespace UFQ.Presentation.Scenes
 
         private void Start()
         {
-            if (playOnStart) Play();
+            if (playOnStart) PlayFromSave();
         }
 
-        public void Play()
+        public void PlayFromSave()
         {
             if (_runner == null)
             {
@@ -40,8 +57,20 @@ namespace UFQ.Presentation.Scenes
                 return;
             }
 
-            if (_narrative.State.CurrentChapter <= chapter) _narrative.StartChapter(chapter);
-            _runner.PlayAsync(storyId, destroyCancellationToken).Forget();
+            RunAsync(destroyCancellationToken).Forget();
+        }
+
+        private async UniTaskVoid RunAsync(CancellationToken token)
+        {
+            foreach (var step in steps)
+            {
+                // Los capítulos ya superados no se repiten al cargar una partida.
+                if (step.chapter < _narrative.State.CurrentChapter) continue;
+
+                if (step.chapter > _narrative.State.CurrentChapter) _narrative.StartChapter(step.chapter);
+                await _runner.PlayAsync(step.storyId, token);
+                StepFinished?.Invoke(step.chapter);
+            }
         }
     }
 }

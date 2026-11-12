@@ -74,6 +74,23 @@ namespace UFQ.Presentation.Player
             if (_hasSpeedParam) animator.SetFloat(SpeedParam, _currentSpeed / Mathf.Max(0.01f, walkSpeed), 0.1f, Time.deltaTime);
         }
 
+        /// <summary>Coloca a Mateo en otro punto (cambio de lugar). El CharacterController se apaga un instante.</summary>
+        public void Teleport(Vector3 position, Quaternion rotation)
+        {
+            if (_controller == null) _controller = GetComponent<CharacterController>();
+            _controller.enabled = false;
+            transform.SetPositionAndRotation(position, rotation);
+            _currentSpeed = 0f;
+            _verticalVelocity = 0f;
+            _controller.enabled = true;
+        }
+
+        /// <summary>Algunos lugares no muestran a Mateo (planos de narración, sueños).</summary>
+        public void SetVisible(bool visible)
+        {
+            foreach (var renderer in GetComponentsInChildren<Renderer>(true)) renderer.enabled = visible;
+        }
+
         private static Vector3 CameraRelative(Vector2 input)
         {
             var camera = Camera.main;

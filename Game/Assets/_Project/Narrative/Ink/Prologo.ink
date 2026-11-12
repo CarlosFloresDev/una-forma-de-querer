@@ -11,6 +11,7 @@ INCLUDE _variables.ink
 -> prologo
 
 === prologo ===
+#escena:P.1
 #musica:silencio_viento_serenata_lejana
 #camara:azotea_plano_general
 Un cuarto pequeño de azotea. Por la ventana, el Misti bajo la luna. Cada tanto, un fuego artificial lejano tiñe el cuarto de color. #accion

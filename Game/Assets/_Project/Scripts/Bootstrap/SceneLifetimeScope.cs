@@ -19,7 +19,7 @@ namespace UFQ.Bootstrap
     {
         protected override void Configure(IContainerBuilder builder)
         {
-            var view = FindInScene<DialogueView>();
+            var view = FindInSceneOrNull<DialogueView>();
             if (view != null)
             {
                 builder.RegisterComponent(view).As<IDialogueView>();
@@ -35,7 +35,8 @@ namespace UFQ.Bootstrap
         {
         }
 
-        private T FindInScene<T>() where T : Component
+        /// <summary>Primer componente T dentro de ESTA escena (no busca en otras).</summary>
+        protected T FindInSceneOrNull<T>() where T : Component
         {
             foreach (var root in gameObject.scene.GetRootGameObjects())
             {

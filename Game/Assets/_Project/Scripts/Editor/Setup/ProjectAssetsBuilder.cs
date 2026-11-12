@@ -3,6 +3,7 @@ using System.IO;
 using Ink.UnityIntegration;
 using UFQ.Bootstrap;
 using UFQ.Infrastructure.Dialogue;
+using UFQ.Presentation.Locations;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -20,6 +21,7 @@ namespace UFQ.Editor.Setup
     {
         internal const string LibraryPath = "Assets/_Project/Settings/InkStoryLibrary.asset";
         internal const string PanelSettingsPath = "Assets/_Project/UI/PanelSettings_Juego.asset";
+        internal const string LocationMapPath = "Assets/_Project/Settings/LocationMap.asset";
         private const string ThemePath = "Assets/_Project/UI/Theme/TemaJuego.tss";
         private const string InkFolder = "Assets/_Project/Narrative/Ink";
         private const string RootScopePrefab = "Assets/_Project/Prefabs/Core/GameLifetimeScope.prefab";
@@ -29,6 +31,7 @@ namespace UFQ.Editor.Setup
         {
             var library = BuildStoryLibrary();
             BuildPanelSettings();
+            BuildLocationMap();
             LinkLibraryToRootScope(library);
             AssetDatabase.SaveAssets();
             Debug.Log("[UFQ] Assets del proyecto actualizados.");
@@ -56,6 +59,35 @@ namespace UFQ.Editor.Setup
             library.SetEntries(entries);
             EditorUtility.SetDirty(library);
             return library;
+        }
+
+        /// <summary>
+        /// Escena del guion → lugar de Unity. Fuente: la columna «Escenas» de la tabla de
+        /// lugares del guion (sección 8). Las sub-escenas (1.6b) heredan de su escena (1.6).
+        /// </summary>
+        internal static LocationMap BuildLocationMap()
+        {
+            var map = AssetDatabase.LoadAssetAtPath<LocationMap>(LocationMapPath);
+            if (map == null)
+            {
+                map = ScriptableObject.CreateInstance<LocationMap>();
+                AssetDatabase.CreateAsset(map, LocationMapPath);
+            }
+
+            (string, string)[] rows =
+            {
+                ("P.1", "Azotea"),
+                ("1.1", "Terminal"), ("1.2", "Libreria"), ("1.3", "Azotea"), ("1.4", "Aula"),
+                ("1.5", "Tintero"), ("1.6", "Mercado"), ("1.6m", "Mercado"), ("1.6p", "Picanteria"),
+                ("1.6b", "Biblioteca"), ("1.7", "Azotea"), ("1.8", "Aula"), ("1.9", "Libreria"),
+                ("1.10", "Tintero"), ("1.11", "Yanahuara"), ("1.12", "Azotea"),
+            };
+
+            var entries = new List<LocationMap.Entry>();
+            foreach (var (script, unity) in rows) entries.Add(new LocationMap.Entry { scriptScene = script, unityScene = unity });
+            map.SetEntries(entries);
+            EditorUtility.SetDirty(map);
+            return map;
         }
 
         internal static PanelSettings BuildPanelSettings()

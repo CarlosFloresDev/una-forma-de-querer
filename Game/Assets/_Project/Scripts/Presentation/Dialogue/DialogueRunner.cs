@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UFQ.Presentation.Input;
@@ -22,9 +23,12 @@ namespace UFQ.Presentation.Dialogue
         private readonly GameInput _input;
         private readonly IEventBus _bus;
         private readonly NarrativeService _narrative;
+        private readonly IReadOnlyList<IDialogueCueHandler> _handlers;
 
-        public DialogueRunner(IDialogueStoryFactory factory, IDialogueView view, GameInput input, IEventBus bus, NarrativeService narrative)
+        public DialogueRunner(IDialogueStoryFactory factory, IDialogueView view, GameInput input, IEventBus bus,
+            NarrativeService narrative, IReadOnlyList<IDialogueCueHandler> handlers)
         {
+            _handlers = handlers ?? new IDialogueCueHandler[0];
             _factory = factory;
             _view = view;
             _input = input;
@@ -49,6 +53,7 @@ namespace UFQ.Presentation.Dialogue
                     while (story.CanContinue)
                     {
                         var line = story.Continue();
+                        await HandleCuesAsync(line, token);
                         PublishCues(line);
                         if (line.Kind == LineKind.Cue) continue;
                         await ShowLineAsync(line, token);
@@ -105,6 +110,18 @@ namespace UFQ.Presentation.Dialogue
                 }
 
                 await UniTask.Yield(PlayerLoopTiming.Update, token);
+            }
+        }
+
+        /// <summary>Espera a los manejadores (cambio de lugar, fundidos…) antes de mostrar la línea.</summary>
+        private async UniTask HandleCuesAsync(DialogueLine line, CancellationToken token)
+        {
+            foreach (var tag in line.Tags)
+            {
+                foreach (var handler in _handlers)
+                {
+                    if (handler.CanHandle(tag)) await handler.HandleAsync(tag, token);
+                }
             }
         }
 
