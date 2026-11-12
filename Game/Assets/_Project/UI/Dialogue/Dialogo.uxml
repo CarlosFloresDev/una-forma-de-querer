@@ -1,0 +1,33 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="Dialogo.uss" />
+    <ui:VisualElement name="dialogo" class="dialogo dialogo--oculto" picking-mode="Ignore">
+
+        <!-- Título a pantalla completa (#titulo): «UN AÑO ANTES», «FIN DEL CAPÍTULO 1» -->
+        <ui:Label name="titulo" class="titulo" picking-mode="Ignore" />
+
+        <!-- Voz interior de Mateo (#voz_interior): manuscrita, flotando arriba -->
+        <ui:Label name="voz-interior" class="voz-interior" picking-mode="Ignore" />
+
+        <!-- Celular (#celular:…) -->
+        <ui:VisualElement name="celular" class="celular" picking-mode="Ignore">
+            <ui:Label name="celular-remitente" class="celular__remitente" />
+            <ui:Label name="celular-texto" class="celular__mensaje" />
+        </ui:VisualElement>
+
+        <!-- Parte inferior: globo de texto, acción y opciones -->
+        <ui:VisualElement class="inferior" picking-mode="Ignore">
+            <ui:VisualElement name="globo" class="globo">
+                <ui:Label name="nombre" class="globo__nombre" />
+                <ui:Label name="texto" class="globo__texto" />
+            </ui:VisualElement>
+
+            <ui:Label name="accion" class="accion" picking-mode="Ignore" />
+
+            <ui:Button name="guardar" class="guardar" text="Guardar  ·  E" />
+
+            <ui:VisualElement name="opciones" class="opciones" />
+
+            <ui:Label name="continuar" class="continuar" text="Espacio para continuar" picking-mode="Ignore" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

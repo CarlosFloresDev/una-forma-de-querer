@@ -4,8 +4,14 @@
     "references":  [
                        "UFQ.Core",
                        "UFQ.UseCases",
+                       "UFQ.Infrastructure",
+                       "UFQ.Presentation",
+                       "UFQ.Bootstrap",
+                       "Ink",
                        "Unity.RenderPipelines.Core.Runtime",
-                       "Unity.RenderPipelines.Universal.Runtime"
+                       "Unity.RenderPipelines.Universal.Runtime",
+                       "Unity.Cinemachine",
+                       "VContainer"
                    ],
     "includePlatforms":  [
                              "Editor"

@@ -4,7 +4,8 @@
     "references":  [
                        "UFQ.Core",
                        "UFQ.UseCases",
-                       "Ink-Libraries"
+                       "Ink-Libraries",
+                       "Ink"
                    ],
     "autoReferenced":  false
 }

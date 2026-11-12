@@ -48,7 +48,7 @@ Ink funciona igual: un `.ink` llama `~ guardar_senal("S04")`, que pasa por el mi
 5. Registra la implementación en `GameLifetimeScope`.
 6. Los ids de señales, gestos y recuerdos salen **solo** de `NarrativeCatalog`.
 
-## Pruebas
+## Ejecutar pruebas
 
 - En Unity: **Window > General > Test Runner > EditMode > Run All**.
 - Sin abrir Unity (Core y UseCases son C# puro): se pueden compilar con .NET usando C# 9, igual que Unity.
@@ -68,3 +68,30 @@ Ink funciona igual: un `.ink` llama `~ guardar_senal("S04")`, que pasa por el mi
 | VContainer 1.19.0 | Inyección de dependencias |
 | UniTask 2.5.11 | Async sin basura para transiciones y esperas |
 | MCP for Unity 10.3.0 | Permite controlar el editor de forma automatizada |
+
+## Juego en marcha (flujo de una escena)
+
+1. **VContainerSettings** (precargado) crea el `GameLifetimeScope` raíz antes de la primera escena: `EventBus`, `NarrativeService`, `GameInput` y la fábrica de historias (`InkStoryLibrary` → `InkDialogueStoryFactory`).
+2. Cada escena tiene un `SceneLifetimeScope` hijo: si encuentra una `DialogueView`, registra el `DialogueRunner`, e inyecta todo componente `ISceneInjectable` de su escena.
+3. `ChapterDirector` marca el capítulo y pide al `DialogueRunner` que reproduzca la historia (`Prologo`, `Capitulo1`…).
+4. `DialogueRunner` publica `DialogueStarted/Ended` (el `PlayerMover` se detiene) y `DialogueCue` para cada etiqueta de dirección (#camara, #musica, #sfx, #juego).
+
+| Pieza | Capa | Archivo |
+|---|---|---|
+| Controles (teclado + mando, en código) | Presentation | `Presentation/Input/GameInput.cs` |
+| Movimiento de Mateo | Presentation | `Presentation/Player/PlayerMover.cs` |
+| Reproductor de diálogo | Presentation | `Presentation/Dialogue/DialogueRunner.cs` |
+| Vista (UI Toolkit) | Presentation | `Presentation/Dialogue/DialogueView.cs` + `UI/Dialogue/Dialogo.uxml/.uss` |
+| Historias por id | Infrastructure | `Infrastructure/Dialogue/InkStoryLibrary.cs` + `InkDialogueStoryFactory.cs` |
+
+## Arte y escenas (menú «Una forma de querer»)
+
+- **Arte > Crear o actualizar materiales**: biblioteca de materiales `M_*` con el shader `UFQ/Pintado` (vidrio: `UFQ/Vidrio`). Al importar un FBX de `Art/`, sus materiales `M_*` se sustituyen solos (`ArtImportPipeline`).
+- **Configuración > Actualizar assets del proyecto**: biblioteca de historias Ink, `PanelSettings` de UI y enlace en el prefab raíz.
+- **Escenas > Construir cuarto de la azotea**: regenera `Scenes/Chapters/Azotea.unity` desde código (`AzoteaSceneBuilder`). Las escenas se construyen por código para que sean reproducibles; no se editan a mano salvo para pruebas.
+- Modelos: se generan por script en Blender (`Art/Blender/scripts`), ver `Art/Blender/README.md`.
+
+## Pruebas
+
+- `UFQ.Tests.EditMode`: reglas del guion, sin Unity ni Ink.
+- `UFQ.Tests.Integration`: recorre los `.ink` compilados reales de principio a fin por el dominio (detecta errores de Ink, rutas sin salida e ids inválidos).

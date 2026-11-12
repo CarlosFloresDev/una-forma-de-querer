@@ -1,9 +1,15 @@
 using System.IO;
+using UFQ.Editor.Setup;
+using UFQ.Presentation.Dialogue;
+using UFQ.Presentation.Player;
+using UFQ.Presentation.Scenes;
+using Unity.Cinemachine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UIElements;
 
 namespace UFQ.Editor.Scenes
 {
@@ -27,6 +33,7 @@ namespace UFQ.Editor.Scenes
         {
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
 
+            ProjectAssetsBuilder.BuildAll();
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
 
             var room = new GameObject("Cuarto").transform;
@@ -34,8 +41,10 @@ namespace UFQ.Editor.Scenes
             BuildFurniture(new GameObject("Muebles").transform);
             BuildExterior(new GameObject("Exterior").transform);
             BuildLighting(new GameObject("Luces").transform);
-            BuildCamera();
+            var player = BuildPlayer();
+            BuildCamera(player);
             BuildVolume();
+            BuildDialogue();
 
             var scope = new GameObject("SceneLifetimeScope");
             var scopeType = System.Type.GetType("UFQ.Bootstrap.SceneLifetimeScope, UFQ.Bootstrap");
@@ -70,6 +79,12 @@ namespace UFQ.Editor.Scenes
             Place("SM_Muro_Liso", parent, new Vector3(2, 0, 1), 90);
             Place("SM_Muro_Puerta", parent, new Vector3(2, 0, -1), 90);
             Place("SM_Puerta", parent, new Vector3(2, 0, -1), 90);
+
+            // Lado abierto del diorama (sur): límite invisible para no salir del cuarto.
+            var edge = new GameObject("Limite_Sur");
+            edge.transform.SetParent(parent, false);
+            edge.transform.position = new Vector3(0, 1.3f, -2.05f);
+            edge.AddComponent<BoxCollider>().size = new Vector3(4.2f, 2.6f, 0.1f);
         }
 
         private static void BuildFurniture(Transform parent)
@@ -164,7 +179,7 @@ namespace UFQ.Editor.Scenes
         }
 
         // ------------------------------------------------------------------ cámara y volumen
-        private static void BuildCamera()
+        private static void BuildCamera(Transform player)
         {
             var go = new GameObject("Main Camera") { tag = "MainCamera" };
             var camera = go.AddComponent<Camera>();
@@ -174,14 +189,83 @@ namespace UFQ.Editor.Scenes
             camera.fieldOfView = 34f;
             camera.nearClipPlane = 0.1f;
             camera.farClipPlane = 300f;
-            go.transform.position = new Vector3(0.6f, 1.75f, -5.2f);
-            go.transform.LookAt(new Vector3(-0.45f, 0.85f, 0.7f));
+            go.transform.position = CameraPosition;
+            go.transform.LookAt(CameraLookAt);
 
             var data = go.AddComponent<UniversalAdditionalCameraData>();
             data.renderPostProcessing = true;
             data.antialiasing = AntialiasingMode.SubpixelMorphologicalAntiAliasing;
+            go.AddComponent<CinemachineBrain>();
+
+            // Cámara de diorama: fija en el corte del cuarto, gira con suavidad para seguir a Mateo.
+            var vcamGo = new GameObject("Cam_Azotea");
+            vcamGo.transform.position = CameraPosition;
+            vcamGo.transform.LookAt(CameraLookAt);
+            var vcam = vcamGo.AddComponent<CinemachineCamera>();
+            var lens = vcam.Lens;
+            lens.FieldOfView = 34f;
+            lens.NearClipPlane = 0.1f;
+            lens.FarClipPlane = 300f;
+            vcam.Lens = lens;
+            if (player != null)
+            {
+                vcam.LookAt = player;
+                var composer = vcamGo.AddComponent<CinemachineRotationComposer>();
+                composer.Damping = new Vector2(1.6f, 1.6f);
+                composer.TargetOffset = new Vector3(0, 1.1f, 0);
+            }
         }
 
+        private static readonly Vector3 CameraPosition = new Vector3(0.6f, 1.75f, -5.2f);
+        private static readonly Vector3 CameraLookAt = new Vector3(-0.45f, 0.85f, 0.7f);
+
+        // ------------------------------------------------------------------ jugador y UI
+        private const string MateoModel = "Assets/_Project/Art/Characters/Mateo/CH_Mateo.fbx";
+
+        private static Transform BuildPlayer()
+        {
+            var player = new GameObject("Mateo");
+            player.transform.position = new Vector3(0.45f, 0f, 0.1f);
+            player.transform.rotation = Quaternion.Euler(0, -20f, 0);
+
+            var controller = player.AddComponent<CharacterController>();
+            controller.height = 1.72f;
+            controller.radius = 0.24f;
+            controller.center = new Vector3(0, 0.86f, 0);
+
+            var model = AssetDatabase.LoadAssetAtPath<GameObject>(MateoModel);
+            if (model != null)
+            {
+                var visual = (GameObject)PrefabUtility.InstantiatePrefab(model, player.transform);
+                visual.transform.localPosition = Vector3.zero;
+            }
+            else
+            {
+                // Provisional hasta que exista CH_Mateo.fbx.
+                var capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+                capsule.name = "Provisional";
+                Object.DestroyImmediate(capsule.GetComponent<Collider>());
+                capsule.transform.SetParent(player.transform, false);
+                capsule.transform.localPosition = new Vector3(0, 0.86f, 0);
+                capsule.transform.localScale = new Vector3(0.48f, 0.86f, 0.48f);
+                capsule.GetComponent<Renderer>().sharedMaterial = AssetDatabase.LoadAssetAtPath<Material>(MaterialsPath + "M_Tela.mat");
+            }
+
+            player.AddComponent<PlayerMover>();
+            return player.transform;
+        }
+
+        private static void BuildDialogue()
+        {
+            var ui = new GameObject("UI_Dialogo");
+            var document = ui.AddComponent<UIDocument>();
+            document.panelSettings = AssetDatabase.LoadAssetAtPath<PanelSettings>(ProjectAssetsBuilder.PanelSettingsPath);
+            document.visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/_Project/UI/Dialogue/Dialogo.uxml");
+            ui.AddComponent<DialogueView>();
+
+            var director = new GameObject("Director");
+            director.AddComponent<ChapterDirector>(); // por defecto: Prólogo
+        }
         private static void BuildVolume()
         {
             Directory.CreateDirectory(Path.GetDirectoryName(VolumePath) ?? ".");
@@ -253,6 +337,7 @@ namespace UFQ.Editor.Scenes
             // El FBX trae la conversión de ejes en la raíz: se respeta y se gira sobre Y.
             instance.transform.rotation = Quaternion.Euler(0, yaw, 0) * prefab.transform.rotation;
             instance.isStatic = !model.Contains("Celular") && !model.Contains("Cuaderno") && !model.Contains("Ballena");
+            AddCollider(instance, model);
             return instance;
         }
 
@@ -266,6 +351,34 @@ namespace UFQ.Editor.Scenes
                 for (var i = 0; i < shared.Length; i++) shared[i] = material;
                 renderer.sharedMaterials = shared;
             }
+        }
+
+        /// <summary>Muros y piso: colisión exacta. Muebles: caja. Objetos pequeños: nada.</summary>
+        private static void AddCollider(GameObject instance, string model)
+        {
+            if (model.Contains("Celular") || model.Contains("Cuaderno") || model.Contains("Ballena")
+                || model.Contains("Lampara") || model.Contains("MarcoFoto") || model.Contains("Ventana")) return;
+
+            if (model.StartsWith("SM_Muro") || model == "SM_Piso" || model == "SM_Puerta")
+            {
+                foreach (var filter in instance.GetComponentsInChildren<MeshFilter>())
+                    filter.gameObject.AddComponent<MeshCollider>().sharedMesh = filter.sharedMesh;
+                return;
+            }
+
+            var bounds = new Bounds(instance.transform.position, Vector3.zero);
+            var first = true;
+            foreach (var renderer in instance.GetComponentsInChildren<Renderer>())
+            {
+                if (first) { bounds = renderer.bounds; first = false; }
+                else bounds.Encapsulate(renderer.bounds);
+            }
+
+            var holder = new GameObject("Colision");
+            holder.transform.SetParent(instance.transform.parent, false);
+            holder.transform.position = bounds.center;
+            holder.AddComponent<BoxCollider>().size = bounds.size;
+            holder.isStatic = true;
         }
 
         private static Material Material(string name, string hex, float brush)

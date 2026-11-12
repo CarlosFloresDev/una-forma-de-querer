@@ -6,7 +6,8 @@
                        "UFQ.UseCases",
                        "VContainer",
                        "UniTask",
-                       "Unity.InputSystem"
+                       "Unity.InputSystem",
+                       "Unity.Cinemachine"
                    ],
     "autoReferenced":  false
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UFQ.Presentation;
+using UFQ.Presentation.Dialogue;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -11,13 +12,20 @@ namespace UFQ.Bootstrap
     /// GameLifetimeScope raíz e inyecta solo los objetos de SU escena, así funciona
     /// igual con escenas cargadas después o de forma aditiva.
     ///
-    /// Para objetos que se crean en tiempo de juego, instanciar con
-    /// <c>Container.Instantiate(prefab)</c> para que también reciban sus dependencias.
+    /// Si la escena tiene una DialogueView, registra también el DialogueRunner.
+    /// Para objetos creados en tiempo de juego: <c>Container.Instantiate(prefab)</c>.
     /// </summary>
     public class SceneLifetimeScope : LifetimeScope
     {
         protected override void Configure(IContainerBuilder builder)
         {
+            var view = FindInScene<DialogueView>();
+            if (view != null)
+            {
+                builder.RegisterComponent(view).As<IDialogueView>();
+                builder.Register<DialogueRunner>(Lifetime.Scoped);
+            }
+
             builder.RegisterBuildCallback(InjectSceneObjects);
             ConfigureScene(builder);
         }
@@ -25,6 +33,17 @@ namespace UFQ.Bootstrap
         /// <summary>Punto de extensión para servicios propios de un capítulo.</summary>
         protected virtual void ConfigureScene(IContainerBuilder builder)
         {
+        }
+
+        private T FindInScene<T>() where T : Component
+        {
+            foreach (var root in gameObject.scene.GetRootGameObjects())
+            {
+                var found = root.GetComponentInChildren<T>(true);
+                if (found != null) return found;
+            }
+
+            return null;
         }
 
         private void InjectSceneObjects(IObjectResolver container)
