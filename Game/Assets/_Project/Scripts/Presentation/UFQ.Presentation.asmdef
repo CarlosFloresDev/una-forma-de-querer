@@ -1,0 +1,12 @@
+{
+    "name":  "UFQ.Presentation",
+    "rootNamespace":  "UFQ.Presentation",
+    "references":  [
+                       "UFQ.Core",
+                       "UFQ.UseCases",
+                       "VContainer",
+                       "UniTask",
+                       "Unity.InputSystem"
+                   ],
+    "autoReferenced":  false
+}

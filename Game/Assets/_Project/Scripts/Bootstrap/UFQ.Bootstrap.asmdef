@@ -1,0 +1,12 @@
+{
+    "name":  "UFQ.Bootstrap",
+    "rootNamespace":  "UFQ.Bootstrap",
+    "references":  [
+                       "UFQ.Core",
+                       "UFQ.UseCases",
+                       "UFQ.Infrastructure",
+                       "UFQ.Presentation",
+                       "VContainer"
+                   ],
+    "autoReferenced":  false
+}

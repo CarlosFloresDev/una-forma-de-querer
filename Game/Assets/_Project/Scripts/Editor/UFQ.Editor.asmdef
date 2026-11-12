@@ -1,0 +1,12 @@
+{
+    "name":  "UFQ.Editor",
+    "rootNamespace":  "UFQ.Editor",
+    "references":  [
+                       "UFQ.Core",
+                       "UFQ.UseCases"
+                   ],
+    "includePlatforms":  [
+                             "Editor"
+                         ],
+    "autoReferenced":  false
+}

@@ -1,0 +1,9 @@
+{
+    "name":  "UFQ.UseCases",
+    "rootNamespace":  "UFQ.UseCases",
+    "references":  [
+                       "UFQ.Core"
+                   ],
+    "autoReferenced":  false,
+    "noEngineReferences":  true
+}

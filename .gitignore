@@ -1,0 +1,56 @@
+# ===== Unity (proyecto en Game/) =====
+/Game/[Ll]ibrary/
+/Game/[Tt]emp/
+/Game/[Oo]bj/
+/Game/[Bb]uild/
+/Game/[Bb]uilds/
+/Game/[Ll]ogs/
+/Game/[Uu]ser[Ss]ettings/
+/Game/[Mm]emoryCaptures/
+/Game/[Rr]ecordings/
+/Game/Assets/Plugins/Editor/JetBrains*
+/Game/Assets/AddressableAssetsData/*/*.bin*
+/Game/Assets/StreamingAssets/aa*
+
+# Archivos generados por IDEs
+/Game/.vs/
+/Game/.vscode/
+/Game/.idea/
+/Game/.gradle/
+/Game/*.csproj
+/Game/*.unityproj
+/Game/*.sln
+/Game/*.slnx
+/Game/*.suo
+/Game/*.tmp
+/Game/*.user
+/Game/*.userprefs
+/Game/*.pidb
+/Game/*.booproj
+/Game/*.svd
+/Game/*.pdb
+/Game/*.mdb
+/Game/*.opendb
+/Game/*.VC.db
+/Game/*.pidb.meta
+/Game/*.pdb.meta
+/Game/*.mdb.meta
+/Game/sysinfo.txt
+/Game/crashlytics-build.properties
+
+# Builds
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# ===== Blender =====
+*.blend1
+*.blend2
+
+# ===== Sistema =====
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Ajustes locales del editor

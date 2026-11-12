@@ -1,0 +1,9 @@
+{
+    "name":  "UFQ.Core",
+    "rootNamespace":  "UFQ.Core",
+    "references":  [
+
+                   ],
+    "autoReferenced":  false,
+    "noEngineReferences":  true
+}

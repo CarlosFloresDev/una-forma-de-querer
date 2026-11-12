@@ -1,0 +1,10 @@
+{
+    "name":  "UFQ.Infrastructure",
+    "rootNamespace":  "UFQ.Infrastructure",
+    "references":  [
+                       "UFQ.Core",
+                       "UFQ.UseCases",
+                       "Ink-Libraries"
+                   ],
+    "autoReferenced":  false
+}
