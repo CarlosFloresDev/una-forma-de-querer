@@ -17,5 +17,7 @@ MonoBehaviour:
     file: {fileID: 6231892579173505729, guid: a5725ec2d7a10424483f5dbafdf8c898, type: 3}
   - id: Capitulo2
     file: {fileID: 6231892579173505729, guid: d21c5bbbbbb732a45a75b0b49feec0a7, type: 3}
+  - id: Capitulo3
+    file: {fileID: 6231892579173505729, guid: 0db003686964b5c4283a750f629524ec, type: 3}
   - id: Prologo
     file: {fileID: 6231892579173505729, guid: d37e479dfd74a814faffb257eeaf2b29, type: 3}

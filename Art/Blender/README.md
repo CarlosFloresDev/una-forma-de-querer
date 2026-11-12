@@ -42,3 +42,28 @@ Se inspeccionaron visualmente las 17 miniaturas, incluida la hoja conjunta: silu
 
 En este entorno restringido Blender avisa que no puede crear su subdirectorio temporal en `D:\DevTools\Temp` y usa esa misma carpeta como alternativa; TEMP/TMP permanecen en D:. Se desactivaron las miniaturas internas automáticas de `.blend` porque su caché no era escribible. Los PNG solicitados se renderizan explícitamente en `Azotea/previews/`. También puede aparecer un aviso de deprecación de `use_nodes` para Blender 6; en 5.2.3 funciona. No hay errores geométricos pendientes si `verification_report.json` contiene 17 resultados correctos.
 
+
+# Personaje: Mateo Rivas (`CH_Mateo`)
+
+Malla estilizada de 1,72 m, rostro sin rasgos (solo pelo y orejas), color plano por material y 8.800 tris. Se genera con un rig compatible con Humanoid de Unity y tres clips en bucle dentro del mismo FBX. Desde la raíz del proyecto, en PowerShell:
+
+```powershell
+$env:TEMP='D:\DevTools\Temp'; $env:TMP='D:\DevTools\Temp'
+& 'D:\Blender\blender.exe' -b --factory-startup --python-exit-code 1 -P ./Art/Blender/scripts/generate_mateo.py -- --output . --previews --temp 'D:\DevTools\Temp\mateo'
+& 'D:\Blender\blender.exe' -b --factory-startup --python-exit-code 1 -P ./Art/Blender/scripts/verify_mateo.py -- --output .
+```
+
+- `scripts/generate_mateo.py`: piezas por anillos elípticos (`loft`), elipsoides y cajas biseladas; las une en una sola malla `CH_Mateo`, la triangula, crea el esqueleto `CH_Mateo_Rig`, aplica pesos automáticos (`ARMATURE_AUTO`) y hornea los clips. Con `--previews` también renderiza las miniaturas. `--temp` recibe la carpeta para fotogramas sueltos y primeros planos de control.
+- `scripts/verify_mateo.py`: reimporta el FBX y comprueba tris, los 22 huesos, materiales `M_`, vértices sin peso (0), máximo 4 influencias, altura, pivote y duración de cada clip. Escribe `Characters/Mateo/verification_report.json`.
+- `Characters/Mateo/CH_Mateo.blend`: fuente. Los clips están como pistas NLA: Idle en los fotogramas 0–60, Walk en 100–130 y LookPhone en 200–260; fuera de esas zonas se ve la pose de reposo (A-pose).
+- `Characters/Mateo/character_report.json`: tris, huesos, clips y estadísticas de pesos.
+- `Characters/Mateo/previews/`: `CH_Mateo_frente.png`, `CH_Mateo_perfil.png`, `CH_Mateo_tres_cuartos.png` (pose Idle), `CH_Mateo_reposo_apose.png`, `CH_Mateo_lookphone.png` y `CH_Mateo_walk_tira.png` (4 fotogramas del Walk, 2048 × 512).
+- `../../Game/Assets/_Project/Art/Characters/Mateo/CH_Mateo.fbx`: exportación para Unity.
+
+Esqueleto (nombres de Mecanim, se asignan solos en Humanoid): `Hips > Spine > Chest > UpperChest > Neck > Head`; `UpperChest > {Left,Right}Shoulder > UpperArm > LowerArm > Hand`; `Hips > {Left,Right}UpperLeg > LowerLeg > Foot > Toes`. Pose de reposo: A-pose con los brazos 35° bajo la horizontal; en Unity usar *Configure > Pose > Enforce T-Pose* si el avatar lo pide.
+
+Clips (30 fps, en bucle, sin desplazamiento de raíz; la cadera se ajusta en cada fotograma para que la suela más baja toque el suelo): `Idle` 2 s (respiración, leve balanceo, mirada baja), `Walk` 1 s por ciclo (paso tranquilo en el sitio), `LookPhone` 2 s (mano derecha frente al pecho, cabeza inclinada; el celular `SM_Celular` se ancla a `RightHand` en Unity). En Unity marcar *Loop Time* en los tres.
+
+Exportación: los mismos ejes del kit (`axis_forward='-Z'`, `axis_up='Y'`, `apply_unit_scale=True`, `FBX_SCALE_ALL`), sin huesos hoja, `bake_anim_use_nla_strips=True` para que cada clip conserve su nombre. Mateo mira hacia -Y en Blender (+Z en Unity); pivote en el suelo, centrado entre los pies.
+
+Pesos: tras el calor de huesos, cada pieza solo puede depender de los huesos que le corresponden (cabeza, pelo, orejas y morral son rígidos; la ropa fina que el calor no alcanza copia el peso del vértice de ropa más cercano; el faldón de la casaca cede hasta un 70% al muslo del mismo lado para que el pantalón no lo atraviese al caminar).

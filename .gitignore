@@ -58,3 +58,6 @@ Desktop.ini
 # Capturas de prueba del editor (MCP)
 /Game/Captures/
 /Game/Assets/Screenshots/
+
+# Python
+__pycache__/

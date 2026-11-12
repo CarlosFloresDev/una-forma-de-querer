@@ -83,6 +83,9 @@ namespace UFQ.Editor.Setup
                 ("1.10", "Tintero"), ("1.11", "Yanahuara"), ("1.12", "Azotea"),
                 ("2.1", "BusMollendo"), ("2.2", "CasaBenavides"), ("2.3", "Playa"), ("2.4", "Playa"),
                 ("2.5", "Feria"), ("2.6", "CastilloForga"), ("2.7", "Fogata"), ("2.8", "Muelle"), ("2.9", "BusMollendo"),
+                ("3.1", "Azotea"), ("3.2", "BusLima"), ("3.3", "DepartamentoCarmen"), ("3.4", "EstudioCobre"),
+                ("3.5", "Barranco"), ("3.6", "CuartoLima"), ("3.7", "Barranco"), ("3.8", "DepartamentoCarmen"),
+                ("3.9", "DepartamentoCarmen"), ("3.10", "CuartoLima"), ("3.11", "BusLima"),
             };
 
             var entries = new List<LocationMap.Entry>();

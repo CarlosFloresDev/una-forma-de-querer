@@ -1,0 +1,524 @@
+[
+  {
+    "kit": "Libreria",
+    "name": "SM_Estante_Libros",
+    "triangles": 4232,
+    "triangle_limit": 6000,
+    "dimensions_m_blender_xyz": [
+      2.07,
+      0.425,
+      2.4
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 116268,
+    "materials": [
+      "M_Lana",
+      "M_LibroA",
+      "M_LibroB",
+      "M_LibroC",
+      "M_Madera",
+      "M_Papel",
+      "M_Pizarra",
+      "M_Tela"
+    ],
+    "blend": "Art/Blender/Capitulo1/Libreria/SM_Estante_Libros.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Libreria/SM_Estante_Libros.fbx"
+  },
+  {
+    "kit": "Libreria",
+    "name": "SM_Estante_Libros_Bajo",
+    "triangles": 2224,
+    "triangle_limit": 6000,
+    "dimensions_m_blender_xyz": [
+      1.47,
+      0.385,
+      1.466
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 86700,
+    "materials": [
+      "M_Ceramica",
+      "M_Lana",
+      "M_LibroA",
+      "M_LibroB",
+      "M_LibroC",
+      "M_Madera",
+      "M_Papel",
+      "M_Pizarra",
+      "M_Planta",
+      "M_Tela"
+    ],
+    "blend": "Art/Blender/Capitulo1/Libreria/SM_Estante_Libros_Bajo.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Libreria/SM_Estante_Libros_Bajo.fbx"
+  },
+  {
+    "kit": "Libreria",
+    "name": "SM_Mostrador",
+    "triangles": 2050,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      1.8,
+      0.6,
+      1.505
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 70428,
+    "materials": [
+      "M_Dorado",
+      "M_LibroA",
+      "M_LibroB",
+      "M_Madera",
+      "M_Metal",
+      "M_Papel"
+    ],
+    "blend": "Art/Blender/Capitulo1/Libreria/SM_Mostrador.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Libreria/SM_Mostrador.fbx"
+  },
+  {
+    "kit": "Libreria",
+    "name": "SM_Canasta_Separadores",
+    "triangles": 2976,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      0.34639,
+      0.34707,
+      0.31
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 114652,
+    "materials": [
+      "M_Ceramica",
+      "M_Lana",
+      "M_LibroA",
+      "M_LibroB",
+      "M_LibroC",
+      "M_Mimbre",
+      "M_Papel",
+      "M_Tela"
+    ],
+    "blend": "Art/Blender/Capitulo1/Libreria/SM_Canasta_Separadores.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Libreria/SM_Canasta_Separadores.fbx"
+  },
+  {
+    "kit": "Libreria",
+    "name": "SM_Sillon",
+    "triangles": 2258,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      0.84624,
+      0.84,
+      1.05
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 83884,
+    "materials": [
+      "M_Dorado",
+      "M_Lana",
+      "M_Madera"
+    ],
+    "blend": "Art/Blender/Capitulo1/Libreria/SM_Sillon.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Libreria/SM_Sillon.fbx"
+  },
+  {
+    "kit": "Libreria",
+    "name": "SM_Pila_Libros",
+    "triangles": 1792,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      0.29462,
+      0.35041,
+      0.253
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 78044,
+    "materials": [
+      "M_LibroA",
+      "M_LibroB",
+      "M_LibroC",
+      "M_Papel",
+      "M_Tela"
+    ],
+    "blend": "Art/Blender/Capitulo1/Libreria/SM_Pila_Libros.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Libreria/SM_Pila_Libros.fbx"
+  },
+  {
+    "kit": "Libreria",
+    "name": "SM_Escalera_Madera",
+    "triangles": 2026,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      0.99,
+      3.41,
+      3.5475
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 63180,
+    "materials": [
+      "M_Madera"
+    ],
+    "blend": "Art/Blender/Capitulo1/Libreria/SM_Escalera_Madera.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Libreria/SM_Escalera_Madera.fbx"
+  },
+  {
+    "kit": "Libreria",
+    "name": "SM_Calendario_Pared",
+    "triangles": 2258,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      0.32,
+      0.026,
+      0.532
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 78636,
+    "materials": [
+      "M_Cemento",
+      "M_Ceramica",
+      "M_Dorado",
+      "M_Lana",
+      "M_LibroA",
+      "M_LibroB",
+      "M_Metal",
+      "M_Papel",
+      "M_Pizarra",
+      "M_Tela"
+    ],
+    "blend": "Art/Blender/Capitulo1/Libreria/SM_Calendario_Pared.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Libreria/SM_Calendario_Pared.fbx"
+  },
+  {
+    "kit": "Libreria",
+    "name": "SM_Gato_Tinta",
+    "triangles": 1498,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      0.45044,
+      0.36983,
+      0.19044
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 66652,
+    "materials": [
+      "M_GatoNegro",
+      "M_Lana",
+      "M_Metal"
+    ],
+    "blend": "Art/Blender/Capitulo1/Libreria/SM_Gato_Tinta.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Libreria/SM_Gato_Tinta.fbx"
+  },
+  {
+    "kit": "Tintero",
+    "name": "SM_Barra_Cafe",
+    "triangles": 2916,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      2.5,
+      0.74402,
+      1.484
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 100252,
+    "materials": [
+      "M_Cemento",
+      "M_Ceramica",
+      "M_Dorado",
+      "M_LibroC",
+      "M_Madera",
+      "M_Metal",
+      "M_Papel",
+      "M_Vidrio"
+    ],
+    "blend": "Art/Blender/Capitulo1/Tintero/SM_Barra_Cafe.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Tintero/SM_Barra_Cafe.fbx"
+  },
+  {
+    "kit": "Tintero",
+    "name": "SM_Mesa_Cafe",
+    "triangles": 744,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      0.61159,
+      0.61159,
+      0.74
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 30412,
+    "materials": [
+      "M_Ceramica",
+      "M_Metal"
+    ],
+    "blend": "Art/Blender/Capitulo1/Tintero/SM_Mesa_Cafe.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Tintero/SM_Mesa_Cafe.fbx"
+  },
+  {
+    "kit": "Tintero",
+    "name": "SM_Silla_Cafe",
+    "triangles": 1386,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      0.42,
+      0.42,
+      0.8775
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 54652,
+    "materials": [
+      "M_Madera"
+    ],
+    "blend": "Art/Blender/Capitulo1/Tintero/SM_Silla_Cafe.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Tintero/SM_Silla_Cafe.fbx"
+  },
+  {
+    "kit": "Tintero",
+    "name": "SM_Taza_Cafe",
+    "triangles": 832,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      0.15,
+      0.15,
+      0.075
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 31580,
+    "materials": [
+      "M_Ceramica",
+      "M_Madera"
+    ],
+    "blend": "Art/Blender/Capitulo1/Tintero/SM_Taza_Cafe.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Tintero/SM_Taza_Cafe.fbx"
+  },
+  {
+    "kit": "Tintero",
+    "name": "SM_Tablon_Corcho",
+    "triangles": 2822,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      1.2,
+      0.04,
+      0.8
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 105404,
+    "materials": [
+      "M_Ceramica",
+      "M_Corcho",
+      "M_Dorado",
+      "M_Lana",
+      "M_LibroA",
+      "M_LibroB",
+      "M_LibroC",
+      "M_Madera",
+      "M_Metal",
+      "M_Papel",
+      "M_Planta"
+    ],
+    "blend": "Art/Blender/Capitulo1/Tintero/SM_Tablon_Corcho.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Tintero/SM_Tablon_Corcho.fbx"
+  },
+  {
+    "kit": "Tintero",
+    "name": "SM_Lampara_Colgante",
+    "triangles": 1036,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      0.38439,
+      0.38439,
+      1.002
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 44684,
+    "materials": [
+      "M_Dorado",
+      "M_Metal",
+      "M_Papel",
+      "M_Pizarra"
+    ],
+    "blend": "Art/Blender/Capitulo1/Tintero/SM_Lampara_Colgante.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Tintero/SM_Lampara_Colgante.fbx"
+  },
+  {
+    "kit": "Aula",
+    "name": "SM_Mesa_Dibujo",
+    "triangles": 1274,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      1.03,
+      0.71577,
+      1.01081
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 60204,
+    "materials": [
+      "M_Dorado",
+      "M_LibroC",
+      "M_Madera",
+      "M_Metal",
+      "M_Papel",
+      "M_Vidrio"
+    ],
+    "blend": "Art/Blender/Capitulo1/Aula/SM_Mesa_Dibujo.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Aula/SM_Mesa_Dibujo.fbx"
+  },
+  {
+    "kit": "Aula",
+    "name": "SM_Taburete",
+    "triangles": 646,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      0.35,
+      0.35,
+      0.67079
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 32684,
+    "materials": [
+      "M_Madera",
+      "M_Metal"
+    ],
+    "blend": "Art/Blender/Capitulo1/Aula/SM_Taburete.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Aula/SM_Taburete.fbx"
+  },
+  {
+    "kit": "Aula",
+    "name": "SM_Pizarra",
+    "triangles": 568,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      3.0,
+      0.1175,
+      1.2
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 36412,
+    "materials": [
+      "M_LibroC",
+      "M_Madera",
+      "M_Papel",
+      "M_Pizarra",
+      "M_Tela"
+    ],
+    "blend": "Art/Blender/Capitulo1/Aula/SM_Pizarra.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Aula/SM_Pizarra.fbx"
+  },
+  {
+    "kit": "Aula",
+    "name": "SM_Maqueta_Arequipa",
+    "triangles": 2742,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      1.0,
+      0.71928,
+      0.324
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 83244,
+    "materials": [
+      "M_Cemento",
+      "M_LibroB",
+      "M_Madera",
+      "M_Papel",
+      "M_Planta",
+      "M_Sillar",
+      "M_Tela"
+    ],
+    "blend": "Art/Blender/Capitulo1/Aula/SM_Maqueta_Arequipa.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Aula/SM_Maqueta_Arequipa.fbx"
+  },
+  {
+    "kit": "Arquitectura",
+    "name": "SM_Muro_Sillar_Arco",
+    "triangles": 834,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      2.0,
+      0.39,
+      3.2
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 33468,
+    "materials": [
+      "M_Cemento",
+      "M_Sillar"
+    ],
+    "blend": "Art/Blender/Capitulo1/Arquitectura/SM_Muro_Sillar_Arco.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Arquitectura/SM_Muro_Sillar_Arco.fbx"
+  },
+  {
+    "kit": "Arquitectura",
+    "name": "SM_Boveda_Sillar",
+    "triangles": 400,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      2.0,
+      2.0,
+      1.0
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 20908,
+    "materials": [
+      "M_Sillar"
+    ],
+    "blend": "Art/Blender/Capitulo1/Arquitectura/SM_Boveda_Sillar.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Arquitectura/SM_Boveda_Sillar.fbx"
+  },
+  {
+    "kit": "Arquitectura",
+    "name": "SM_Muro_Sillar_Alto",
+    "triangles": 92,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      2.0,
+      0.39,
+      3.2
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 18092,
+    "materials": [
+      "M_Cemento",
+      "M_Sillar"
+    ],
+    "blend": "Art/Blender/Capitulo1/Arquitectura/SM_Muro_Sillar_Alto.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Arquitectura/SM_Muro_Sillar_Alto.fbx"
+  },
+  {
+    "kit": "Arquitectura",
+    "name": "SM_Ventana_Reja",
+    "triangles": 2566,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      1.16,
+      0.36,
+      1.4
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 80860,
+    "materials": [
+      "M_Dorado",
+      "M_Madera",
+      "M_Metal",
+      "M_Sillar",
+      "M_Vidrio"
+    ],
+    "blend": "Art/Blender/Capitulo1/Arquitectura/SM_Ventana_Reja.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Arquitectura/SM_Ventana_Reja.fbx"
+  },
+  {
+    "kit": "Arquitectura",
+    "name": "SM_Muro_Sillar_Ventana",
+    "triangles": 202,
+    "triangle_limit": 3000,
+    "dimensions_m_blender_xyz": [
+      2.0,
+      0.39,
+      3.2
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 20428,
+    "materials": [
+      "M_Cemento",
+      "M_Sillar"
+    ],
+    "blend": "Art/Blender/Capitulo1/Arquitectura/SM_Muro_Sillar_Ventana.blend",
+    "fbx": "Game/Assets/_Project/Art/Props/Arquitectura/SM_Muro_Sillar_Ventana.fbx"
+  }
+]

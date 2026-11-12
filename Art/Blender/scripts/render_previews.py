@@ -6,8 +6,8 @@ from mathutils import Vector
 
 def point_at(obj,target):obj.rotation_euler=(Vector(target)-obj.location).to_track_quat('-Z','Y').to_euler()
 
-def render(source, only=None):
-    destination=source/'previews'
+def render(source, only=None, destination=None):
+    destination=destination or source/'previews'
     destination.mkdir(parents=True,exist_ok=True)
     for path in sorted(source.glob('SM_*.blend')):
         if only and path.stem not in only: continue

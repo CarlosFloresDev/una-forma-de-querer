@@ -1,0 +1,69 @@
+{
+  "fbx": "Game\\Assets\\_Project\\Art\\Characters\\Mateo\\CH_Mateo.fbx",
+  "triangles_reimported": 8800,
+  "bones": [
+    "Hips",
+    "Spine",
+    "Chest",
+    "UpperChest",
+    "Neck",
+    "Head",
+    "LeftShoulder",
+    "LeftUpperArm",
+    "LeftLowerArm",
+    "LeftHand",
+    "RightShoulder",
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "LeftToes",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot",
+    "RightToes"
+  ],
+  "actions": [
+    {
+      "name": "CH_Mateo_Rig|Idle",
+      "frames": [
+        1.0,
+        61.0
+      ],
+      "seconds": 2.0
+    },
+    {
+      "name": "CH_Mateo_Rig|LookPhone",
+      "frames": [
+        1.0,
+        61.0
+      ],
+      "seconds": 2.0
+    },
+    {
+      "name": "CH_Mateo_Rig|Walk",
+      "frames": [
+        1.0,
+        31.0
+      ],
+      "seconds": 1.0
+    }
+  ],
+  "fps": 30.0,
+  "unweighted_vertices": 0,
+  "max_influences": 4,
+  "height_m": 1.7170000164446408,
+  "width_m": 1.4753644466400146,
+  "pivot_feet_centered": true,
+  "materials": [
+    "M_Piel",
+    "M_Pelo",
+    "M_Casaca",
+    "M_Chalina",
+    "M_Pantalon",
+    "M_Zapatillas",
+    "M_Morral"
+  ]
+}

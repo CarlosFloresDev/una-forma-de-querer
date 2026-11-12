@@ -63,3 +63,25 @@ MonoBehaviour:
     unityScene: Muelle
   - scriptScene: 2.9
     unityScene: BusMollendo
+  - scriptScene: 3.1
+    unityScene: Azotea
+  - scriptScene: 3.2
+    unityScene: BusLima
+  - scriptScene: 3.3
+    unityScene: DepartamentoCarmen
+  - scriptScene: 3.4
+    unityScene: EstudioCobre
+  - scriptScene: 3.5
+    unityScene: Barranco
+  - scriptScene: 3.6
+    unityScene: CuartoLima
+  - scriptScene: 3.7
+    unityScene: Barranco
+  - scriptScene: 3.8
+    unityScene: DepartamentoCarmen
+  - scriptScene: 3.9
+    unityScene: DepartamentoCarmen
+  - scriptScene: 3.10
+    unityScene: CuartoLima
+  - scriptScene: 3.11
+    unityScene: BusLima

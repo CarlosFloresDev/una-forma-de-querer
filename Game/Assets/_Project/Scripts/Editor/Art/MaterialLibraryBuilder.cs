@@ -42,6 +42,24 @@ namespace UFQ.Editor.Art
             new Entry("M_Dorado", "#D9A441", brush: 0.02f, rim: 0.4f),
             new Entry("M_Vidrio", "#9FB7BF", brush: 0.0f, rim: 0.5f),
             new Entry("M_Cemento", "#B7AEA4", brush: 0.14f, rim: 0.05f),
+            // Capítulo 1: librería, Tintero, aula (Art/Props/Libreria, Tintero, Aula)
+            new Entry("M_LibroA", "#7A3B3B", brush: 0.08f),
+            new Entry("M_LibroB", "#3E5A6E", brush: 0.08f),
+            new Entry("M_LibroC", "#C2A15A", brush: 0.08f),
+            new Entry("M_Ceramica", "#E9E2D6", brush: 0.04f, rim: 0.1f),
+            new Entry("M_Pizarra", "#2F3B35", brush: 0.06f, rim: 0.1f),
+            new Entry("M_Planta", "#5E7A4A", brush: 0.12f),
+            new Entry("M_GatoNegro", "#1E1C22", brush: 0.05f, rim: 0.45f),
+            new Entry("M_Corcho", "#B5865A", brush: 0.2f),
+            new Entry("M_Mimbre", "#C8A46B", brush: 0.16f),
+            // Personajes: Mateo (Art/Characters/Mateo)
+            new Entry("M_Casaca", "#6B6B3E", brush: 0.08f, rim: 0.3f),
+            new Entry("M_Chalina", "#8E8C8A", brush: 0.1f, rim: 0.3f),
+            new Entry("M_Piel", "#C99A7A", brush: 0.03f, rim: 0.35f),
+            new Entry("M_Pelo", "#3A2A22", brush: 0.06f, rim: 0.3f),
+            new Entry("M_Pantalon", "#2F3340", brush: 0.06f, rim: 0.25f),
+            new Entry("M_Zapatillas", "#E3DED4", brush: 0.05f, rim: 0.2f),
+            new Entry("M_Morral", "#A08B6A", brush: 0.1f, rim: 0.25f),
         };
 
         [MenuItem("Una forma de querer/Arte/Crear o actualizar materiales")]
@@ -49,6 +67,7 @@ namespace UFQ.Editor.Art
         {
             Build();
             AssetDatabase.ImportAsset(ArtImportPipeline.ArtRoot + "Props", ImportAssetOptions.ImportRecursive | ImportAssetOptions.ForceUpdate);
+            AssetDatabase.ImportAsset(ArtImportPipeline.ArtRoot + "Characters", ImportAssetOptions.ImportRecursive | ImportAssetOptions.ForceUpdate);
             Debug.Log("[UFQ Arte] Materiales actualizados y modelos reimportados.");
         }
 

@@ -1,0 +1,82 @@
+{
+  "name": "CH_Mateo",
+  "triangles": 8800,
+  "non_manifold_edges": 0,
+  "height_m": 1.7170000076293945,
+  "dimensions_m_blender_xyz": [
+    1.4753644466400146,
+    0.45253628492355347,
+    1.7170000076293945
+  ],
+  "min_z": 0.0,
+  "bones": [
+    "Hips",
+    "Spine",
+    "Chest",
+    "UpperChest",
+    "Neck",
+    "Head",
+    "LeftShoulder",
+    "LeftUpperArm",
+    "LeftLowerArm",
+    "LeftHand",
+    "LeftUpperLeg",
+    "LeftLowerLeg",
+    "LeftFoot",
+    "LeftToes",
+    "RightShoulder",
+    "RightUpperArm",
+    "RightLowerArm",
+    "RightHand",
+    "RightUpperLeg",
+    "RightLowerLeg",
+    "RightFoot",
+    "RightToes"
+  ],
+  "clips": [
+    {
+      "name": "Idle",
+      "frames": 60,
+      "seconds": 2.0,
+      "scene_start": 0
+    },
+    {
+      "name": "Walk",
+      "frames": 30,
+      "seconds": 1.0,
+      "scene_start": 100
+    },
+    {
+      "name": "LookPhone",
+      "frames": 60,
+      "seconds": 2.0,
+      "scene_start": 200
+    }
+  ],
+  "fps": 30,
+  "skin": {
+    "fallback_vertices": 1130,
+    "max_influences": 4,
+    "fallback_by_rule": {
+      "auto:UpperChest,Neck,Head": 2,
+      "skirt:Hips,Spine": 232,
+      "skirt:Hips,Spine,Chest,UpperChest": 62,
+      "auto:LeftFoot,LeftToes": 56,
+      "auto:RightFoot,RightToes": 56,
+      "auto:Neck,UpperChest,Chest": 568,
+      "auto:Hips,Spine,Chest,UpperChest,LeftShoulder": 154
+    }
+  },
+  "materials": [
+    "M_Casaca",
+    "M_Chalina",
+    "M_Morral",
+    "M_Pantalon",
+    "M_Pelo",
+    "M_Piel",
+    "M_Zapatillas"
+  ],
+  "fbx_bytes": 867580,
+  "blend": "Art\\Blender\\Characters\\Mateo\\CH_Mateo.blend",
+  "fbx": "Game\\Assets\\_Project\\Art\\Characters\\Mateo\\CH_Mateo.fbx"
+}

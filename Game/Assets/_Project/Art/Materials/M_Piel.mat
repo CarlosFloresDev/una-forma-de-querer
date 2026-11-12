@@ -32,10 +32,10 @@ Material:
     - _BandSoftness: 0.18
     - _Bands: 3
     - _BrushScale: 3.5
-    - _BrushStrength: 0.04
+    - _BrushStrength: 0.03
     - _GlowStrength: 0
     - _RimPower: 3.5
-    - _RimStrength: 0.15
+    - _RimStrength: 0.35
     - _ShadowStrength: 0.75
     m_Colors:
     - _BaseColor: {r: 0.7882353, g: 0.6039216, b: 0.47843137, a: 1}

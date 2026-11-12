@@ -25,6 +25,7 @@ namespace UFQ.Tests.Integration
         [TestCase("Prologo")]
         [TestCase("Capitulo1")]
         [TestCase("Capitulo2")]
+        [TestCase("Capitulo3")]
         public void Story_CompilesWithoutErrors(string name)
         {
             var file = Load(name);
@@ -36,6 +37,7 @@ namespace UFQ.Tests.Integration
         [TestCase("Prologo")]
         [TestCase("Capitulo1")]
         [TestCase("Capitulo2")]
+        [TestCase("Capitulo3")]
         public void Story_CanBePlayedToTheEnd_AlwaysChoosingFirstOption(string name)
         {
             var lines = Play(name, out var narrative);
@@ -46,6 +48,7 @@ namespace UFQ.Tests.Integration
         [TestCase("Prologo")]
         [TestCase("Capitulo1")]
         [TestCase("Capitulo2")]
+        [TestCase("Capitulo3")]
         public void SignalAndGestureTags_UseIdsFromTheCatalog(string name)
         {
             foreach (var line in Play(name, out _))
@@ -89,6 +92,26 @@ namespace UFQ.Tests.Integration
             Assert.That(narrative.State.HasNotedGesture("V4"), Is.True, "Responder con la conchita nota V4");
             Assert.That(narrative.State.NicoResponse, Is.EqualTo(NicoResponse.Anger));
             Assert.That(narrative.State.Lens, Is.EqualTo(0), "Leer como amistad no suma LENTE");
+        }
+
+        [Test]
+        public void Chapter3_MarksSignalsS12ToS17()
+        {
+            var signals = new HashSet<string>();
+            foreach (var line in Play("Capitulo3", out _))
+                if (line.SignalId != null) signals.Add(line.SignalId);
+            Assert.That(signals, Is.EquivalentTo(new[] { "S12", "S13", "S14", "S15", "S16", "S17" }));
+        }
+
+        [Test]
+        public void Chapter3_MainDecisionReachesTheDomain_AndBrokenLensDoesNotCount()
+        {
+            Play("Capitulo3", out var narrative);
+            Assert.That(narrative.State.DecisionC3, Is.EqualTo(DecisionC3.Confess), "Primera opción de 3.10: confesar");
+            Assert.That(narrative.State.HasNotedGesture("V5"), Is.True);
+            Assert.That(narrative.State.HasNotedGesture("V6"), Is.True);
+            Assert.That(narrative.State.HasNotedGesture("V7"), Is.True);
+            Assert.That(narrative.State.LensMomentIds, Does.Not.Contain("3.10"), "En 3.10 la Lente ya no funciona");
         }
 
         [Test]

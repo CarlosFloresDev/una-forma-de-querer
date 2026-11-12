@@ -1,4 +1,5 @@
 using UFQ.Bootstrap;
+using UFQ.Editor.Art;
 using UFQ.Editor.Setup;
 using UFQ.Presentation.Dialogue;
 using UFQ.Presentation.Locations;
@@ -97,6 +98,11 @@ namespace UFQ.Editor.Scenes
             {
                 var visual = (GameObject)PrefabUtility.InstantiatePrefab(model, player.transform);
                 visual.transform.localPosition = Vector3.zero;
+                var animator = visual.GetComponent<Animator>();
+                if (animator == null) animator = visual.AddComponent<Animator>();
+                animator.runtimeAnimatorController = CharacterAnimatorBuilder.BuildMateo();
+                animator.applyRootMotion = false;
+                animator.cullingMode = AnimatorCullingMode.CullUpdateTransforms;
             }
             else
             {

@@ -26,7 +26,14 @@ namespace UFQ.Editor.Art
             importer.importCameras = false;
             importer.importLights = false;
             importer.importBlendShapes = false;
-            importer.importAnimation = assetPath.Contains("/Characters/");
+            var isCharacter = assetPath.Contains("/Characters/");
+            importer.importAnimation = isCharacter;
+            if (isCharacter)
+            {
+                // Rig Humanoid de Mecanim: los huesos ya vienen con nombres estándar (Hips, Spine…).
+                importer.animationType = ModelImporterAnimationType.Human;
+                importer.avatarSetup = ModelImporterAvatarSetup.CreateFromThisModel;
+            }
             importer.meshCompression = ModelImporterMeshCompression.Low;
             importer.isReadable = false;
             importer.importNormals = ModelImporterNormals.Import;
@@ -37,6 +44,27 @@ namespace UFQ.Editor.Art
             {
                 importer.AddRemap(new AssetImporter.SourceAssetIdentifier(typeof(Material), pair.Key), pair.Value);
             }
+        }
+
+        /// <summary>Las animaciones de personaje (Idle, Walk, LookPhone…) son ciclos: van en bucle.</summary>
+        private void OnPreprocessAnimation()
+        {
+            if (!assetPath.StartsWith(ArtRoot) || !assetPath.Contains("/Characters/")) return;
+            var importer = (ModelImporter)assetImporter;
+            var clips = importer.defaultClipAnimations;
+            if (clips == null || clips.Length == 0) return;
+            foreach (var clip in clips)
+            {
+                clip.loopTime = true;
+                clip.lockRootRotation = true;
+                clip.lockRootHeightY = true;
+                clip.lockRootPositionXZ = true;
+                clip.keepOriginalOrientation = true;
+                clip.keepOriginalPositionY = true;
+                clip.keepOriginalPositionXZ = true;
+            }
+
+            importer.clipAnimations = clips;
         }
 
         private void OnPostprocessModel(GameObject root)
