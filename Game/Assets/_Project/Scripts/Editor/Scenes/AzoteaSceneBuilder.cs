@@ -1,6 +1,9 @@
 using System.IO;
 using UFQ.Editor.Setup;
+using UFQ.Presentation.Ambience;
+using UFQ.Presentation.Cameras;
 using UFQ.Presentation.Dialogue;
+using UFQ.Presentation.Notebook;
 using UFQ.Presentation.Player;
 using UFQ.Presentation.Scenes;
 using Unity.Cinemachine;
@@ -45,6 +48,7 @@ namespace UFQ.Editor.Scenes
             BuildCamera(player);
             BuildVolume();
             BuildDialogue();
+            BuildFireworks();
 
             var scope = new GameObject("SceneLifetimeScope");
             var scopeType = System.Type.GetType("UFQ.Bootstrap.SceneLifetimeScope, UFQ.Bootstrap");
@@ -197,25 +201,44 @@ namespace UFQ.Editor.Scenes
             data.antialiasing = AntialiasingMode.SubpixelMorphologicalAntiAliasing;
             go.AddComponent<CinemachineBrain>();
 
-            // Cámara de diorama: fija en el corte del cuarto, gira con suavidad para seguir a Mateo.
-            var vcamGo = new GameObject("Cam_Azotea");
-            vcamGo.transform.position = CameraPosition;
-            vcamGo.transform.LookAt(CameraLookAt);
-            var vcam = vcamGo.AddComponent<CinemachineCamera>();
+            // Planos de cámara: los activa Ink con #camara:<nombre> (CameraShotDirector).
+            var rig = new GameObject("Camaras");
+            var director = rig.AddComponent<CameraShotDirector>();
+
+            // Plano general de diorama: fijo en el corte, gira con suavidad siguiendo a Mateo.
+            Shot(rig.transform, "azotea_plano_general", CameraPosition, CameraLookAt, 34f, player, 1.6f);
+            // Mismo encuadre para las escenas de noche del Capítulo 1 (1.3, 1.7).
+            Shot(rig.transform, "azotea_noche", CameraPosition + new Vector3(-0.3f, -0.1f, 0.4f), CameraLookAt, 32f, player, 1.6f);
+            // Primer plano del cuaderno sobre el escritorio: «la cámara entra en el dibujo».
+            Shot(rig.transform, "entrar_en_dibujo", new Vector3(-0.05f, 1.35f, 1.0f), new Vector3(-0.05f, 0.8f, 1.5f), 28f, null, 0f);
+            // La cama, para Mateo con el celular.
+            Shot(rig.transform, "azotea_cama", new Vector3(-0.2f, 1.25f, -0.9f), new Vector3(-1.4f, 0.7f, 0.4f), 36f, null, 0f);
+
+            var so = new SerializedObject(director);
+            so.FindProperty("initialShot").stringValue = "azotea_plano_general";
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        private static void Shot(Transform rig, string name, Vector3 position, Vector3 lookAt, float fov, Transform follow, float damping)
+        {
+            var go = new GameObject(name);
+            go.transform.SetParent(rig, false);
+            go.transform.position = position;
+            go.transform.LookAt(lookAt);
+            var vcam = go.AddComponent<CinemachineCamera>();
             var lens = vcam.Lens;
-            lens.FieldOfView = 34f;
-            lens.NearClipPlane = 0.1f;
+            lens.FieldOfView = fov;
+            lens.NearClipPlane = 0.05f;
             lens.FarClipPlane = 300f;
             vcam.Lens = lens;
-            if (player != null)
+            if (follow != null)
             {
-                vcam.LookAt = player;
-                var composer = vcamGo.AddComponent<CinemachineRotationComposer>();
-                composer.Damping = new Vector2(1.6f, 1.6f);
+                vcam.LookAt = follow;
+                var composer = go.AddComponent<CinemachineRotationComposer>();
+                composer.Damping = new Vector2(damping, damping);
                 composer.TargetOffset = new Vector3(0, 1.1f, 0);
             }
         }
-
         private static readonly Vector3 CameraPosition = new Vector3(0.6f, 1.75f, -5.2f);
         private static readonly Vector3 CameraLookAt = new Vector3(-0.45f, 0.85f, 0.7f);
 
@@ -262,6 +285,12 @@ namespace UFQ.Editor.Scenes
             document.panelSettings = AssetDatabase.LoadAssetAtPath<PanelSettings>(ProjectAssetsBuilder.PanelSettingsPath);
             document.visualTreeAsset = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/_Project/UI/Dialogue/Dialogo.uxml");
             ui.AddComponent<DialogueView>();
+
+            var hud = new GameObject("UI_Cuaderno");
+            var hudDocument = hud.AddComponent<UIDocument>();
+            hudDocument.panelSettings = document.panelSettings;
+            hudDocument.sortingOrder = -1; // debajo del diálogo
+            hud.AddComponent<IllusionMeterView>();
 
             var director = new GameObject("Director");
             director.AddComponent<ChapterDirector>(); // por defecto: Prólogo
@@ -351,6 +380,71 @@ namespace UFQ.Editor.Scenes
                 for (var i = 0; i < shared.Length; i++) shared[i] = material;
                 renderer.sharedMaterials = shared;
             }
+        }
+
+        private static void BuildFireworks()
+        {
+            var go = new GameObject("Fuegos_Serenata");
+            var particles = go.AddComponent<ParticleSystem>();
+            particles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
+            var main = particles.main;
+            main.playOnAwake = false;
+            main.loop = false;
+            main.simulationSpace = ParticleSystemSimulationSpace.World;
+            main.startLifetime = new ParticleSystem.MinMaxCurve(1.4f, 2.3f);
+            main.startSpeed = new ParticleSystem.MinMaxCurve(3.5f, 7f);
+            main.startSize = new ParticleSystem.MinMaxCurve(0.35f, 0.7f);
+            main.gravityModifier = 0.35f;
+            main.maxParticles = 3000;
+
+            var emission = particles.emission;
+            emission.rateOverTime = 0;
+
+            var shape = particles.shape;
+            shape.shapeType = ParticleSystemShapeType.Sphere;
+            shape.radius = 0.1f;
+
+            var fade = particles.colorOverLifetime;
+            fade.enabled = true;
+            var gradient = new Gradient();
+            gradient.SetKeys(
+                new[] { new GradientColorKey(Color.white, 0f), new GradientColorKey(Color.white, 1f) },
+                new[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(0.8f, 0.5f), new GradientAlphaKey(0f, 1f) });
+            fade.color = gradient;
+
+            var shrink = particles.sizeOverLifetime;
+            shrink.enabled = true;
+            shrink.size = new ParticleSystem.MinMaxCurve(1f, AnimationCurve.Linear(0, 1, 1, 0.2f));
+
+            var renderer = go.GetComponent<ParticleSystemRenderer>();
+            renderer.sharedMaterial = SparkMaterial();
+
+            // Luz que «tiñe el cuarto»: entra por la ventana norte.
+            var tint = NewLight(go.transform, "Tinte_Fuegos", LightType.Point, Color.white, 0f);
+            tint.transform.position = new Vector3(-1f, 2.0f, 2.7f);
+            tint.range = 7f;
+
+            var ambience = go.AddComponent<FireworksAmbience>();
+            var so = new SerializedObject(ambience);
+            so.FindProperty("burst").objectReferenceValue = particles;
+            so.FindProperty("roomTint").objectReferenceValue = tint;
+            so.FindProperty("areaCenter").vector3Value = new Vector3(-14f, 7f, 70f);
+            so.FindProperty("areaSize").vector3Value = new Vector3(34f, 8f, 12f);
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        private static Material SparkMaterial()
+        {
+            var path = MaterialsPath + "M_Chispa.mat";
+            var material = AssetDatabase.LoadAssetAtPath<Material>(path);
+            if (material == null)
+            {
+                material = new Material(Shader.Find("UFQ/Chispa"));
+                AssetDatabase.CreateAsset(material, path);
+            }
+
+            return material;
         }
 
         /// <summary>Muros y piso: colisión exacta. Muebles: caja. Objetos pequeños: nada.</summary>
