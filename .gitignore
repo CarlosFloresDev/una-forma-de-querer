@@ -54,3 +54,7 @@ Desktop.ini
 .DS_Store
 
 # Ajustes locales del editor
+
+# Capturas de prueba del editor (MCP)
+/Game/Captures/
+/Game/Assets/Screenshots/

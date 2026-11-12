@@ -3,7 +3,9 @@
     "rootNamespace":  "UFQ.Editor",
     "references":  [
                        "UFQ.Core",
-                       "UFQ.UseCases"
+                       "UFQ.UseCases",
+                       "Unity.RenderPipelines.Core.Runtime",
+                       "Unity.RenderPipelines.Universal.Runtime"
                    ],
     "includePlatforms":  [
                              "Editor"

@@ -1,0 +1,305 @@
+[
+  {
+    "name": "SM_Cama",
+    "triangles": 1262,
+    "dimensions_m_blender_xyz": [
+      0.973259449005127,
+      1.996000051498413,
+      0.6800000071525574
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 57548,
+    "materials": [
+      "M_Dorado",
+      "M_Lana",
+      "M_Madera",
+      "M_Metal",
+      "M_Papel",
+      "M_Sillar"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Cama.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Cama.fbx"
+  },
+  {
+    "name": "SM_Escritorio",
+    "triangles": 682,
+    "dimensions_m_blender_xyz": [
+      1.1799999475479126,
+      0.6024127006530762,
+      0.7825000286102295
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 34588,
+    "materials": [
+      "M_Dorado",
+      "M_Madera"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Escritorio.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Escritorio.fbx"
+  },
+  {
+    "name": "SM_Silla",
+    "triangles": 692,
+    "dimensions_m_blender_xyz": [
+      0.4399999976158142,
+      0.4300000071525574,
+      0.8849999904632568
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 31580,
+    "materials": [
+      "M_Madera"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Silla.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Silla.fbx"
+  },
+  {
+    "name": "SM_Cuaderno",
+    "triangles": 368,
+    "dimensions_m_blender_xyz": [
+      0.22099998593330383,
+      0.31949999928474426,
+      0.033000003546476364
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 28364,
+    "materials": [
+      "M_Dorado",
+      "M_Lana",
+      "M_Papel",
+      "M_Tela"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Cuaderno.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Cuaderno.fbx"
+  },
+  {
+    "name": "SM_Celular",
+    "triangles": 232,
+    "dimensions_m_blender_xyz": [
+      0.07500000298023224,
+      0.14900000393390656,
+      0.013500000350177288
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 24172,
+    "materials": [
+      "M_Dorado",
+      "M_Metal",
+      "M_Vidrio"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Celular.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Celular.fbx"
+  },
+  {
+    "name": "SM_Estufa",
+    "triangles": 752,
+    "dimensions_m_blender_xyz": [
+      0.4000000059604645,
+      0.23999999463558197,
+      0.414000004529953
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 37292,
+    "materials": [
+      "M_Dorado",
+      "M_Lana",
+      "M_Metal",
+      "M_Sillar"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Estufa.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Estufa.fbx"
+  },
+  {
+    "name": "SM_Lampara",
+    "triangles": 654,
+    "dimensions_m_blender_xyz": [
+      0.23499998450279236,
+      0.28999999165534973,
+      0.5
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 38108,
+    "materials": [
+      "M_Dorado",
+      "M_Metal",
+      "M_Papel"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Lampara.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Lampara.fbx"
+  },
+  {
+    "name": "SM_MarcoFoto",
+    "triangles": 1042,
+    "dimensions_m_blender_xyz": [
+      0.2199999988079071,
+      0.16254767775535583,
+      0.2800000011920929
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 49868,
+    "materials": [
+      "M_Dorado",
+      "M_Lana",
+      "M_Madera",
+      "M_Papel",
+      "M_Tela"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_MarcoFoto.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_MarcoFoto.fbx"
+  },
+  {
+    "name": "SM_Ventana",
+    "triangles": 328,
+    "dimensions_m_blender_xyz": [
+      1.2799999713897705,
+      0.23000000417232513,
+      1.2000000476837158
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 30956,
+    "materials": [
+      "M_Dorado",
+      "M_Madera",
+      "M_Vidrio"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Ventana.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Ventana.fbx"
+  },
+  {
+    "name": "SM_Puerta",
+    "triangles": 628,
+    "dimensions_m_blender_xyz": [
+      1.0199999809265137,
+      0.20141267776489258,
+      2.0999999046325684
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 33308,
+    "materials": [
+      "M_Dorado",
+      "M_Madera",
+      "M_Metal"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Puerta.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Puerta.fbx"
+  },
+  {
+    "name": "SM_Ballena",
+    "triangles": 1304,
+    "dimensions_m_blender_xyz": [
+      0.441102534532547,
+      0.5176762342453003,
+      0.23500001430511475
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 53660,
+    "materials": [
+      "M_Dorado",
+      "M_Metal",
+      "M_Sillar",
+      "M_Tela"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Ballena.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Ballena.fbx"
+  },
+  {
+    "name": "SM_Maleta",
+    "triangles": 1064,
+    "dimensions_m_blender_xyz": [
+      0.6399999856948853,
+      0.25699999928474426,
+      0.5239999890327454
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 45292,
+    "materials": [
+      "M_Dorado",
+      "M_Lana",
+      "M_Madera",
+      "M_Metal",
+      "M_Papel"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Maleta.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Maleta.fbx"
+  },
+  {
+    "name": "SM_Muro_Liso",
+    "triangles": 12,
+    "dimensions_m_blender_xyz": [
+      2.0,
+      0.18000000715255737,
+      2.5999999046325684
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 15532,
+    "materials": [
+      "M_Sillar"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Muro_Liso.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Muro_Liso.fbx"
+  },
+  {
+    "name": "SM_Muro_Ventana",
+    "triangles": 40,
+    "dimensions_m_blender_xyz": [
+      2.0,
+      0.18000000715255737,
+      2.5999999046325684
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 16076,
+    "materials": [
+      "M_Sillar"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Muro_Ventana.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Muro_Ventana.fbx"
+  },
+  {
+    "name": "SM_Muro_Puerta",
+    "triangles": 28,
+    "dimensions_m_blender_xyz": [
+      2.0,
+      0.18000000715255737,
+      2.5999999046325684
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 15868,
+    "materials": [
+      "M_Sillar"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Muro_Puerta.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Muro_Puerta.fbx"
+  },
+  {
+    "name": "SM_Piso",
+    "triangles": 12,
+    "dimensions_m_blender_xyz": [
+      2.0,
+      2.0,
+      0.11999999731779099
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 15516,
+    "materials": [
+      "M_Sillar"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Piso.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Piso.fbx"
+  },
+  {
+    "name": "SM_Techo_Calamina",
+    "triangles": 964,
+    "dimensions_m_blender_xyz": [
+      2.0,
+      2.0,
+      0.24199999868869781
+    ],
+    "non_manifold_edges": 0,
+    "fbx_bytes": 27852,
+    "materials": [
+      "M_Metal"
+    ],
+    "blend": "Art\\Blender\\Azotea\\SM_Techo_Calamina.blend",
+    "fbx": "Game\\Assets\\_Project\\Art\\Props\\Azotea\\SM_Techo_Calamina.fbx"
+  }
+]

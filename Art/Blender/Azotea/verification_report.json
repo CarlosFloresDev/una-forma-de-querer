@@ -1,0 +1,155 @@
+[
+  {
+    "name": "SM_Cama",
+    "fbx_exists": true,
+    "triangles_reimported": 1262,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_Escritorio",
+    "fbx_exists": true,
+    "triangles_reimported": 682,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_Silla",
+    "fbx_exists": true,
+    "triangles_reimported": 692,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_Cuaderno",
+    "fbx_exists": true,
+    "triangles_reimported": 368,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_Celular",
+    "fbx_exists": true,
+    "triangles_reimported": 232,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_Estufa",
+    "fbx_exists": true,
+    "triangles_reimported": 752,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_Lampara",
+    "fbx_exists": true,
+    "triangles_reimported": 654,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_MarcoFoto",
+    "fbx_exists": true,
+    "triangles_reimported": 1042,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_Ventana",
+    "fbx_exists": true,
+    "triangles_reimported": 328,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_Puerta",
+    "fbx_exists": true,
+    "triangles_reimported": 628,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_Ballena",
+    "fbx_exists": true,
+    "triangles_reimported": 1304,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_Maleta",
+    "fbx_exists": true,
+    "triangles_reimported": 1064,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_Muro_Liso",
+    "fbx_exists": true,
+    "triangles_reimported": 12,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_Muro_Ventana",
+    "fbx_exists": true,
+    "triangles_reimported": 40,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_Muro_Puerta",
+    "fbx_exists": true,
+    "triangles_reimported": 28,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_Piso",
+    "fbx_exists": true,
+    "triangles_reimported": 12,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  },
+  {
+    "name": "SM_Techo_Calamina",
+    "fbx_exists": true,
+    "triangles_reimported": 964,
+    "non_manifold_edges": 0,
+    "scale_meters_verified": true,
+    "base_center_pivot_verified": true,
+    "preview_512px": true
+  }
+]
