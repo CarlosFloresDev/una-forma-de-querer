@@ -15,6 +15,7 @@ namespace UFQ.Core.Narrative
         private readonly HashSet<string> _dadMemories = new HashSet<string>();
         private readonly HashSet<string> _lensMoments = new HashSet<string>();
         private readonly HashSet<string> _chapter5Saves = new HashSet<string>();
+        private readonly HashSet<string> _storyMarks = new HashSet<string>();
 
         public Chapter CurrentChapter { get; private set; } = Chapter.Prologue;
         public DecisionC3 DecisionC3 { get; private set; }
@@ -45,9 +46,18 @@ namespace UFQ.Core.Narrative
         public IReadOnlyCollection<string> DadMemoryIds => _dadMemories;
         public IReadOnlyCollection<string> LensMomentIds => _lensMoments;
         public IReadOnlyCollection<string> Chapter5SaveIds => _chapter5Saves;
+        public IReadOnlyCollection<string> StoryMarkIds => _storyMarks;
 
         public bool HasSavedSignal(string id) => _savedSignals.Contains(id);
         public bool HasNotedGesture(string id) => _notedGestures.Contains(id);
+        public bool HasStoryMark(string id) => _storyMarks.Contains(id);
+
+        /// <summary>Deja una marca de historia para escenas posteriores. false si ya estaba.</summary>
+        public bool Mark(string markId)
+        {
+            Require(NarrativeCatalog.IsStoryMark(markId), $"Marca de historia desconocida: {markId}");
+            return _storyMarks.Add(markId);
+        }
 
         /// <summary>Guarda una señal dorada. Devuelve false si ya estaba guardada.</summary>
         public bool SaveSignal(string signalId)

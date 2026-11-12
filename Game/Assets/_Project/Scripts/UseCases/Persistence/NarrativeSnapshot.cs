@@ -27,6 +27,7 @@ namespace UFQ.UseCases.Persistence
         public List<string> dadMemories = new List<string>();
         public List<string> lensMoments = new List<string>();
         public List<string> chapter5Saves = new List<string>();
+        public List<string> storyMarks = new List<string>();
 
         private static readonly IEnumerable<string> Empty = new string[0];
 
@@ -45,6 +46,7 @@ namespace UFQ.UseCases.Persistence
             dadMemories = new List<string>(s.DadMemoryIds),
             lensMoments = new List<string>(s.LensMomentIds),
             chapter5Saves = new List<string>(s.Chapter5SaveIds),
+            storyMarks = new List<string>(s.StoryMarkIds),
         };
 
         /// <summary>Reconstruye el estado pasando por las reglas del dominio (valida ids).</summary>
@@ -62,6 +64,7 @@ namespace UFQ.UseCases.Persistence
             foreach (var id in (IEnumerable<string>)dadMemories ?? Empty) s.FindDadMemory(id);
             foreach (var id in (IEnumerable<string>)lensMoments ?? Empty) s.ApplyLens(id, LensReading.SomethingMore);
             foreach (var id in (IEnumerable<string>)chapter5Saves ?? Empty) s.SaveInChapter5(id);
+            foreach (var id in (IEnumerable<string>)storyMarks ?? Empty) s.Mark(id); // ausente en partidas viejas
             if (decisionC3 != 0) s.DecideC3((DecisionC3)decisionC3);
             if (nicoResponse != 0) s.SetNicoResponse((NicoResponse)nicoResponse);
             if (finalMessage != 0) s.DecideFinalMessage((FinalMessage)finalMessage);

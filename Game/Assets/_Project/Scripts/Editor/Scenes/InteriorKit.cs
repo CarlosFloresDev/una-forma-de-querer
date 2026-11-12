@@ -91,6 +91,21 @@ namespace UFQ.Editor.Scenes
             }
         }
 
+        /// <summary>
+        /// Vereda de sillar frente al lado abierto (sur) del diorama, para escenas que pasan
+        /// afuera mirando hacia adentro (4.1, 4.6c). La pared invisible sur sigue impidiendo entrar.
+        /// </summary>
+        internal static void Sidewalk(Transform room, float width, float depth)
+        {
+            const float sidewalkDepth = 3f;
+            var center = -depth / 2f - 0.3f - sidewalkDepth / 2f;
+            SceneBuildKit.Block(room, "Vereda", new Vector3(0, -0.1f, center), new Vector3(width + 4f, 0.2f, sidewalkDepth),
+                SceneBuildKit.MaterialAsset("M_VeredaSillar", "#D8D0C2", 0.14f, 2.2f, 0.05f));
+            InvisibleWall(room, "Limite_Vereda", new Vector3(0, 1f, center - sidewalkDepth / 2f), new Vector3(width + 4f, 2f, 0.2f));
+            foreach (var side in new[] { -1f, 1f })
+                InvisibleWall(room, "Limite_Vereda_Lado", new Vector3(side * (width / 2f + 2f), 1f, center), new Vector3(0.2f, 2f, sidewalkDepth));
+        }
+
         internal static void InvisibleWall(Transform parent, string name, Vector3 center, Vector3 size)
         {
             var go = new GameObject(name);

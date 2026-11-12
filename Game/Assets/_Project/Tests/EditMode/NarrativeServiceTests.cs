@@ -31,6 +31,31 @@ namespace UFQ.Tests.EditMode
         }
 
         [Test]
+        public void StoryMarks_AreValidated_SavedOnce_AndSurviveReload()
+        {
+            var repo = new FakeRepository();
+            var service = new NarrativeService(new EventBus(), repo);
+
+            Assert.That(service.Mark("ConchitaRecogida"), Is.True);
+            Assert.That(service.Mark("ConchitaRecogida"), Is.False, "Una marca cuenta una sola vez");
+            Assert.Throws<NarrativeRuleException>(() => service.Mark("NoExiste"));
+
+            var reloaded = new NarrativeService(new EventBus(), repo);
+            Assert.That(reloaded.State.HasStoryMark("ConchitaRecogida"), Is.True, "La marca viaja entre capítulos (se guarda)");
+            Assert.That(reloaded.State.HasStoryMark("BallenaEnAzotea"), Is.False);
+        }
+
+        [Test]
+        public void OldSave_WithoutStoryMarks_StillLoads()
+        {
+            var repo = new FakeRepository { Stored = new NarrativeSnapshot { savedSignals = new List<string> { "S01" }, storyMarks = null } };
+            var service = new NarrativeService(new EventBus(), repo);
+            Assert.That(service.LoadIssue, Is.Null);
+            Assert.That(service.State.Signals, Is.EqualTo(1));
+            Assert.That(service.State.StoryMarkIds, Is.Empty);
+        }
+
+        [Test]
         public void FailedDecision_RollsBack()
         {
             var repo = new FakeRepository();

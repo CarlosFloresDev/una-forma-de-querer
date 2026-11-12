@@ -38,14 +38,30 @@ namespace UFQ.Core.Narrative
             "C5_Chalina", "C5_QuesoHelado", "C5_TeVoyAExtranar",
         };
 
+        /// <summary>
+        /// Marcas de historia: hechos que una escena deja para otra posterior (otra historia
+        /// de Ink) y que no suman a ninguna variable. Ej.: si Mateo recogió la conchita en 2.3,
+        /// en 4.1 puede dársela a Valeria.
+        /// </summary>
+        public static readonly IReadOnlyList<string> StoryMarks = new[]
+        {
+            "FraseCartero",       // 1.9: miró a Doña Inés al decir «invita hasta al cartero»
+            "ConchitaPrometida",  // 2.1: le prometió una conchita a Valeria
+            "ConchitaRecogida",   // 2.3: la recogió en la playa
+            "BallenaEnAzotea",    // 3.1: dejó la ballena de peluche en la azotea
+            "ConchitaEntregada",  // 4.1: se la dio a Valeria (la lleva en la coda D)
+        };
+
         private static readonly HashSet<string> SignalSet = new HashSet<string>(Signals);
         private static readonly HashSet<string> GestureSet = new HashSet<string>(ValeriaGestures);
         private static readonly HashSet<string> MemorySet = new HashSet<string>(DadMemories);
         private static readonly HashSet<string> C5Set = new HashSet<string>(Chapter5Gestures);
+        private static readonly HashSet<string> MarkSet = new HashSet<string>(StoryMarks);
 
         public static bool IsSignal(string id) => id != null && SignalSet.Contains(id);
         public static bool IsValeriaGesture(string id) => id != null && GestureSet.Contains(id);
         public static bool IsDadMemory(string id) => id != null && MemorySet.Contains(id);
         public static bool IsChapter5Gesture(string id) => id != null && C5Set.Contains(id);
+        public static bool IsStoryMark(string id) => id != null && MarkSet.Contains(id);
     }
 }

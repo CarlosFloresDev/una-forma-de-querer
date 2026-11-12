@@ -23,6 +23,7 @@ ABRIL: Toma. Para que te acuerdes de que aquí sí sale el sol. #senal:S12
 * [Guardar la ballena en la maleta]
     Mateo mete la ballena entre las camisas. #accion
 * [Dejar la ballena en la azotea]
+    ~ marcar("BallenaEnAzotea")
     Mateo la deja sobre la almohada. #accion
 - DOÑA INÉS: La casa se queda en silencio sin ti, hijito.
 Tinta sigue a Mateo hasta la esquina y se sienta en la vereda de sillar a mirarlo irse. #accion

@@ -66,6 +66,14 @@ namespace UFQ.UseCases.Narrative
             return true;
         }
 
+        /// <summary>Marca de historia (catálogo StoryMarks). Devuelve false si ya existía.</summary>
+        public bool Mark(string markId)
+        {
+            if (!Mutate(s => s.Mark(markId))) return false;
+            _bus.Publish(new DecisionTaken("MARCA", markId));
+            return true;
+        }
+
         public void StartChapter(Chapter chapter)
         {
             Mutate(s => { s.AdvanceTo(chapter); return true; });

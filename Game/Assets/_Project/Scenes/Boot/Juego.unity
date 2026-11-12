@@ -227,6 +227,8 @@ MonoBehaviour:
     storyId: Capitulo2
   - chapter: 3
     storyId: Capitulo3
+  - chapter: 4
+    storyId: Capitulo4
   playOnStart: 1
 --- !u!4 &432254440
 Transform:

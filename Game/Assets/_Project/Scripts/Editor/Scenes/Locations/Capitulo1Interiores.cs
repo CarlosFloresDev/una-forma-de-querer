@@ -34,7 +34,8 @@ namespace UFQ.Editor.Scenes.Locations
         {
             const float w = 10f, d = 8f;
             var scene = NewLocationScene();
-            Room("Libreria", w, d, north: "AAVAA", east: "VAAA", west: "AVAR", floor: Library("M_Madera"));
+            var room = Room("Libreria", w, d, north: "AAVAA", east: "VAAA", west: "AVAR", floor: Library("M_Madera"));
+            Sidewalk(room, w, d);
 
             var shop = new GameObject("Libreria_Muebles").transform;
             // Estantes hasta el techo: muro norte y muro oeste
@@ -75,6 +76,8 @@ namespace UFQ.Editor.Scenes.Locations
             var rig = CameraRig("libreria_interior").transform;
             Shot(rig, "libreria_interior", new Vector3(1.5f, 3.4f, -7.5f), new Vector3(0, 1f, 1f), 42f, followPlayer: true);
             Shot(rig, "libreria_noche", new Vector3(-1.2f, 1.9f, -3.6f), new Vector3(1.4f, 1.1f, 0.6f), 38f, followPlayer: true);
+            Shot(rig, "libreria_manana", new Vector3(3.4f, 2.0f, -2.6f), new Vector3(1.2f, 1.1f, 1.2f), 40f, followPlayer: true);
+            Shot(rig, "libreria_vereda", new Vector3(-4.5f, 1.6f, -8.8f), new Vector3(0.5f, 1.1f, -5.6f), 44f, followPlayer: true);
 
             Volume("VP_Libreria", new Look
             {
@@ -87,6 +90,9 @@ namespace UFQ.Editor.Scenes.Locations
             {
                 ("1.2", new Vector3(-3.6f, 0, -3f), 90f),
                 ("1.9", new Vector3(0.6f, 0, -1.2f), 40f),
+                ("4.2", new Vector3(-3.6f, 0, -3f), 90f),
+                ("4.6b", new Vector3(0.6f, 0, -0.4f), 20f),
+                ("4.6c", new Vector3(-1.5f, 0, -5.6f), 90f),
             });
             SaveLocation(scene, "Libreria");
         }
@@ -97,8 +103,9 @@ namespace UFQ.Editor.Scenes.Locations
         {
             const float w = 10f, d = 8f;
             var scene = NewLocationScene();
-            Room("Tintero", w, d, north: "AARAA", east: "VAVA", west: "AVAR",
+            var room = Room("Tintero", w, d, north: "AARAA", east: "VAVA", west: "AVAR",
                 floor: MaterialAsset("M_PisoLoseta", "#9C5B44", 0.14f, 4f, 0.05f));
+            Sidewalk(room, w, d);
 
             var cafe = new GameObject("Cafe_Muebles").transform;
             Place(InteriorKit.Tintero, "SM_Barra_Cafe", cafe, new Vector3(1.6f, 0, 2.4f), 0);
@@ -134,6 +141,7 @@ namespace UFQ.Editor.Scenes.Locations
 
             var rig = CameraRig("tintero_barra").transform;
             Shot(rig, "tintero_barra", new Vector3(-1.5f, 3.0f, -7f), new Vector3(1.5f, 1.1f, 2.2f), 40f, followPlayer: true);
+            Shot(rig, "tintero_vereda", new Vector3(-3.5f, 1.7f, -9f), new Vector3(0.5f, 1.2f, 0.5f), 40f, followPlayer: true);
             Shot(rig, "tintero_31", new Vector3(3.9f, 1.8f, -0.6f), new Vector3(0.8f, 1.2f, 2.8f), 36f, followPlayer: true);
 
             Volume("VP_Tintero", new Look
@@ -147,6 +155,7 @@ namespace UFQ.Editor.Scenes.Locations
             {
                 ("1.5", new Vector3(-3.6f, 0, -3f), 90f),
                 ("1.10", new Vector3(1.6f, 0, 3.25f), 180f),
+                ("4.1", new Vector3(-2.5f, 0, -5.8f), 60f),
             });
             SaveLocation(scene, "Tintero");
         }

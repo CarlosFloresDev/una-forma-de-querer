@@ -24,7 +24,7 @@ VALERIA: ¿Ya llegaron? Pásenla bonito 🙂 Aquí el Tintero está vacío sin t
     ~ notar_gesto("V4")
     MATEO: ¡Gracias, Vale! Te traigo una conchita 🐚 #celular:enviado
     VALERIA: trato hecho 🐚🐚🐚 #celular:entrante
-    ~ promesa_conchita = true // TODO Cap. 4: pasar al dominio para que 4.1 sepa si hay conchita
+    ~ marcar("ConchitaPrometida")
 * [Dejar en visto]
     El chat se queda con el doble check azul. #accion
 - -> c2_casa
@@ -45,10 +45,17 @@ ABRIL: A Nico ya lo conoces. Y este es Mateo. Es de los buenos. #semilla:P_de_lo
 ABRIL: ¡Foto! Ponte serio… no, mejor ríete.
 ABRIL: Esta es mi foto favorita del viaje. #senal:S09
 Al fondo, Abril se toma otra foto con Sofi y otra con Nico. Su risa suena igual. #accion #semilla:Q_fotos_favoritas
-{ promesa_conchita:
-    En la orilla brilla una conchita rosada. Mateo la guarda en el bolsillo para Valeria. #accion #juego:recoger_conchita
-}
+{ marcado("ConchitaPrometida"): -> conchita ->}
 -> c2_nico
+
+= conchita
+En la orilla brilla una conchita rosada. #accion #juego:recoger_conchita
+* [Recogerla para Valeria]
+    ~ marcar("ConchitaRecogida")
+    Mateo la sacude de arena y la guarda en el bolsillo. #accion
+* [Seguir caminando]
+    La ola se la lleva. #accion
+- ->->
 
 // ---------------------------------------------------------------- 2.4
 === c2_nico ===

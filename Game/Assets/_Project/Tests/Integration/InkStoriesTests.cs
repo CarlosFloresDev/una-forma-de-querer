@@ -26,6 +26,7 @@ namespace UFQ.Tests.Integration
         [TestCase("Capitulo1")]
         [TestCase("Capitulo2")]
         [TestCase("Capitulo3")]
+        [TestCase("Capitulo4")]
         public void Story_CompilesWithoutErrors(string name)
         {
             var file = Load(name);
@@ -38,6 +39,7 @@ namespace UFQ.Tests.Integration
         [TestCase("Capitulo1")]
         [TestCase("Capitulo2")]
         [TestCase("Capitulo3")]
+        [TestCase("Capitulo4")]
         public void Story_CanBePlayedToTheEnd_AlwaysChoosingFirstOption(string name)
         {
             var lines = Play(name, out var narrative);
@@ -49,6 +51,7 @@ namespace UFQ.Tests.Integration
         [TestCase("Capitulo1")]
         [TestCase("Capitulo2")]
         [TestCase("Capitulo3")]
+        [TestCase("Capitulo4")]
         public void SignalAndGestureTags_UseIdsFromTheCatalog(string name)
         {
             foreach (var line in Play(name, out _))
@@ -92,6 +95,47 @@ namespace UFQ.Tests.Integration
             Assert.That(narrative.State.HasNotedGesture("V4"), Is.True, "Responder con la conchita nota V4");
             Assert.That(narrative.State.NicoResponse, Is.EqualTo(NicoResponse.Anger));
             Assert.That(narrative.State.Lens, Is.EqualTo(0), "Leer como amistad no suma LENTE");
+            Assert.That(narrative.State.HasStoryMark("ConchitaPrometida"), Is.True);
+            Assert.That(narrative.State.HasStoryMark("ConchitaRecogida"), Is.True, "2.3: recogerla para Valeria");
+        }
+
+        [Test]
+        public void Chapter4_DoesNotOfferToSaveAnything()
+        {
+            foreach (var line in Play("Capitulo4", out _))
+                Assert.That(line.SignalId, Is.Null, $"En el sueño no se guarda nada: {line.Text}");
+        }
+
+        [TestCase(DecisionC3.Confess, "¿Podemos estar bien?")]
+        [TestCase(DecisionC3.StaySilent, "¡Volviste!")]
+        [TestCase(DecisionC3.HangUp, "¿Hice algo mal?")]
+        public void Chapter4_BranchesOnTheChapter3Decision(DecisionC3 decision, string expected)
+        {
+            var lines = Play("Capitulo4", out _, n => n.DecideC3(decision));
+            Assert.That(lines.Exists(l => l.Text.Contains(expected)), Is.True, $"Falta «{expected}» con {decision}");
+        }
+
+        [Test]
+        public void Chapter4_UsesMarksFromEarlierChapters()
+        {
+            var lines = Play("Capitulo4", out var narrative, n =>
+            {
+                n.DecideC3(DecisionC3.Confess);
+                n.Mark("ConchitaRecogida");
+                n.Mark("BallenaEnAzotea");
+            });
+
+            Assert.That(narrative.State.HasStoryMark("ConchitaEntregada"), Is.True, "4.1: primera opción, dar la conchita");
+            Assert.That(lines.Exists(l => l.Text.Contains("Te la cuidé")), Is.True, "4.2: la ballena que se quedó en la azotea");
+            Assert.That(narrative.State.DadMemoryIds, Does.Contain("M4_BoletoChivay"), "4.3: mirar la casaca");
+        }
+
+        [Test]
+        public void Chapter4_WithoutEarlierMarks_SkipsThoseMoments()
+        {
+            var lines = Play("Capitulo4", out var narrative);
+            Assert.That(narrative.State.HasStoryMark("ConchitaEntregada"), Is.False);
+            Assert.That(lines.Exists(l => l.Text.Contains("Te la cuidé")), Is.False);
         }
 
         [Test]
@@ -122,6 +166,7 @@ namespace UFQ.Tests.Integration
             Assert.That(narrative.State.HasNotedGesture("V2"), Is.True);
             // Primera opción de 1.11: «Que esto dure».
             Assert.That(narrative.State.NewYearWish, Is.EqualTo(NewYearWish.ThatThisLasts));
+            Assert.That(narrative.State.HasStoryMark("FraseCartero"), Is.True, "1.9: mirar a Doña Inés");
         }
 
         // ------------------------------------------------------------------ utilidades
@@ -132,9 +177,10 @@ namespace UFQ.Tests.Integration
             return file;
         }
 
-        private static List<DialogueLine> Play(string name, out NarrativeService narrative)
+        private static List<DialogueLine> Play(string name, out NarrativeService narrative, System.Action<NarrativeService> setup = null)
         {
             narrative = new NarrativeService(new EventBus(), new MemoryRepository());
+            setup?.Invoke(narrative);
             var bridge = new InkNarrativeBridge(new Story(Load(name).storyJson), narrative);
             var dialogue = InkDialogueStory.Connected(bridge);
             var lines = new List<DialogueLine>();

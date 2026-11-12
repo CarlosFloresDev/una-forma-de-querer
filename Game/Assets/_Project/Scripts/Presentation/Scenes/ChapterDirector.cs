@@ -30,6 +30,7 @@ namespace UFQ.Presentation.Scenes
             new Step { chapter = Chapter.Chapter1Arequipa, storyId = "Capitulo1" },
             new Step { chapter = Chapter.Chapter2Mollendo, storyId = "Capitulo2" },
             new Step { chapter = Chapter.Chapter3Lima, storyId = "Capitulo3" },
+            new Step { chapter = Chapter.Chapter4OtraMirada, storyId = "Capitulo4" },
         };
 
         [SerializeField] private bool playOnStart = true;

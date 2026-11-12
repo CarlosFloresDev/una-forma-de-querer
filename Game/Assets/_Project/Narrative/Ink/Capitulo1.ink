@@ -140,6 +140,11 @@ ABRIL: ¡Ven! Te hice algo.
 ABRIL: Este es especial. Para ti. Porque dibujaste el castillo. #senal:S06 #semilla:G_separadores
 ABRIL: Oye… Sofi tiene casa en Mollendo. En febrero, para carnavales, vamos los cuatro. Vienes, ¿no? #senal:S07
 DOÑA INÉS: Esta chiquilla invita hasta al cartero. #semilla:H_cartero
++ [Mirar a Doña Inés]
+    ~ marcar("FraseCartero")
+    Inés lo mira por encima de los lentes un segundo de más. Luego sigue ordenando. #accion
++ [Seguir mirando el separador]
+- 
 ABRIL: ¡Y el 31 todos a Yanahuara! A ver los fuegos. ¡Con algo amarillo, que da suerte!
 -> c1_turno
 

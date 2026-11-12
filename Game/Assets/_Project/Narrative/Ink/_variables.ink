@@ -15,8 +15,9 @@ VAR NICO_RESP = "None"
 VAR HONESTO_VALE = false
 VAR ESPERA_TOTAL = 0
 
-// Estado local de la historia (solo afecta al texto, no al dominio):
-VAR promesa_conchita = false   // 2.1: Mateo prometió una conchita a Valeria
+// Hechos que cruzan capítulos (cada capítulo es otra historia de Ink): NO uses
+// variables locales para eso. Usa marcar("Id") / marcado("Id") con un id del
+// catálogo NarrativeCatalog.StoryMarks; el dominio los guarda en la partida.
 
 EXTERNAL guardar_senal(id)
 EXTERNAL notar_gesto(id)
@@ -28,6 +29,8 @@ EXTERNAL respuesta_nico(valor)
 EXTERNAL deseo_ano_nuevo(valor)
 EXTERNAL honesto_vale(honesto)
 EXTERNAL mensaje_final(valor)
+EXTERNAL marcar(id)
+EXTERNAL marcado(id)
 
 // --- Versiones de respaldo para probar en Inky sin el juego ---------
 // Reproducen las reglas del dominio: cada id cuenta una sola vez y hay topes
@@ -75,3 +78,7 @@ VAR _ids = ""
 ~ HONESTO_VALE = honesto
 === function mensaje_final(valor)
 ~ return
+=== function marcar(id)
+~ _contar_una_vez("marca:" + id)
+=== function marcado(id)
+~ return _ids ? (";marca:" + id + ";")

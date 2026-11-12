@@ -59,6 +59,9 @@ namespace UFQ.Infrastructure.Dialogue
                 Mutate(() => _narrative.SetNewYearWish(Parse<NewYearWish>(valor))));
             _story.BindExternalFunction("honesto_vale", (bool honesto) =>
                 Mutate(() => _narrative.DecideHonestyWithValeria(honesto)));
+            _story.BindExternalFunction("marcar", (string id) => Mutate(() => _narrative.Mark(id)));
+            // Consulta pura: segura durante la anticipación de Ink (lookahead).
+            _story.BindExternalFunction("marcado", (string id) => (object)_narrative.State.HasStoryMark(id), true);
             _story.BindExternalFunction("mensaje_final", (string valor) =>
                 Mutate(() => _narrative.DecideFinalMessage(Parse<FinalMessage>(valor))));
         }
@@ -87,7 +90,7 @@ namespace UFQ.Infrastructure.Dialogue
             foreach (var name in new[]
                      {
                          "guardar_senal", "notar_gesto", "recuerdo_papa", "guardar_c5", "lente", "decidir_c3",
-                         "respuesta_nico", "deseo_ano_nuevo", "honesto_vale", "mensaje_final",
+                         "respuesta_nico", "deseo_ano_nuevo", "honesto_vale", "mensaje_final", "marcar", "marcado",
                      })
             {
                 _story.UnbindExternalFunction(name);

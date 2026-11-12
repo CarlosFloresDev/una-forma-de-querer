@@ -86,6 +86,9 @@ namespace UFQ.Editor.Setup
                 ("3.1", "Azotea"), ("3.2", "BusLima"), ("3.3", "DepartamentoCarmen"), ("3.4", "EstudioCobre"),
                 ("3.5", "Barranco"), ("3.6", "CuartoLima"), ("3.7", "Barranco"), ("3.8", "DepartamentoCarmen"),
                 ("3.9", "DepartamentoCarmen"), ("3.10", "CuartoLima"), ("3.11", "BusLima"),
+                // 4.1 y 4.6c pasan en la vereda: el lado abierto (sur) del diorama.
+                ("4.1", "Tintero"), ("4.2", "Libreria"), ("4.3", "Azotea"), ("4.4", "Cuaderno"),
+                ("4.5", "Cuaderno"), ("4.6", "Azotea"), ("4.6b", "Libreria"), ("4.6c", "Libreria"), ("4.7", "Azotea"),
             };
 
             var entries = new List<LocationMap.Entry>();

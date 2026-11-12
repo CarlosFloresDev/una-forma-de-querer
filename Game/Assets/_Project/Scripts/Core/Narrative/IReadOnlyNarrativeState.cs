@@ -28,8 +28,10 @@ namespace UFQ.Core.Narrative
         IReadOnlyCollection<string> DadMemoryIds { get; }
         IReadOnlyCollection<string> LensMomentIds { get; }
         IReadOnlyCollection<string> Chapter5SaveIds { get; }
+        IReadOnlyCollection<string> StoryMarkIds { get; }
 
         bool HasSavedSignal(string id);
         bool HasNotedGesture(string id);
+        bool HasStoryMark(string id);
     }
 }
