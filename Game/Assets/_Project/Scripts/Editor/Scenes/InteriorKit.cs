@@ -106,6 +106,26 @@ namespace UFQ.Editor.Scenes
                 InvisibleWall(room, "Limite_Vereda_Lado", new Vector3(side * (width / 2f + 2f), 1f, center), new Vector3(0.2f, 2f, sidewalkDepth));
         }
 
+        /// <summary>Mesa de tablero y patas (base en <paramref name="floorCenter"/>; size = ancho, alto, largo).</summary>
+        internal static void Table(Transform parent, string name, Vector3 floorCenter, Vector3 size, Material wood)
+        {
+            const float top = 0.06f, leg = 0.08f, inset = 0.12f;
+            var table = new GameObject(name).transform;
+            table.SetParent(parent, false);
+            table.position = floorCenter;
+            SceneBuildKit.Block(table, "Tablero", floorCenter + Vector3.up * (size.y - top / 2f), new Vector3(size.x, top, size.z), wood);
+            var legHeight = size.y - top;
+            foreach (var sx in new[] { -1f, 1f })
+            foreach (var sz in new[] { -1f, 1f })
+            {
+                var offset = new Vector3(sx * (size.x / 2f - inset), legHeight / 2f, sz * (size.z / 2f - inset));
+                SceneBuildKit.Block(table, "Pata", floorCenter + offset, new Vector3(leg, legHeight, leg), wood);
+            }
+
+            // Travesaño a lo largo para que las mesas largas no se vean frágiles
+            SceneBuildKit.Block(table, "Travesano", floorCenter + Vector3.up * 0.25f, new Vector3(leg * 0.7f, leg, size.z - inset * 2f), wood, collide: false);
+        }
+
         internal static void InvisibleWall(Transform parent, string name, Vector3 center, Vector3 size)
         {
             var go = new GameObject(name);

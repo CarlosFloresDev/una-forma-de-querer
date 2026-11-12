@@ -57,7 +57,7 @@ namespace UFQ.Editor.Scenes.Locations
 
             // Escalera a la cocina (donde está el calendario de cumpleaños, semilla B)
             Place(InteriorKit.Libreria, "SM_Escalera_Madera", shop, new Vector3(4.3f, 0, 0.9f), 0);
-            Place(InteriorKit.Libreria, "SM_Calendario_Pared", shop, OnWall(Side.North, w, d, 4.1f, 1.9f, 0.01f), FacingRoom(Side.North), collide: false);
+            Place(InteriorKit.Libreria, "SM_Calendario_Pared", shop, OnWall(Side.North, w, d, 4.1f, 1.9f, 0.025f), FacingRoom(Side.North), collide: false);
 
             var people = new GameObject("Personajes").transform;
             Figure(people, "DonaInes", new Vector3(1.6f, 0, 1.35f), 180, "#8A6E8F", "#C9C3BC", 1.58f);
@@ -169,7 +169,7 @@ namespace UFQ.Editor.Scenes.Locations
             Room("Aula", w, d, north: "AAAAAA", east: "VVVVV", west: "AARAA", floor: Library("M_Cemento"));
 
             var classroom = new GameObject("Aula_Muebles").transform;
-            Place(InteriorKit.Aula, "SM_Pizarra", classroom, OnWall(Side.North, w, d, -1f, 0.9f, 0.02f), FacingRoom(Side.North), collide: false);
+            Place(InteriorKit.Aula, "SM_Pizarra", classroom, OnWall(Side.North, w, d, -1f, 0.9f, 0.07f), FacingRoom(Side.North), collide: false);
 
             // Cuatro filas de mesas de dibujo mirando a la pizarra
             var rows = new[] { 2f, 0f, -2f, -4f };
@@ -258,7 +258,7 @@ namespace UFQ.Editor.Scenes.Locations
             var wood = Library("M_Madera");
             foreach (var tx in new[] { -1.4f, 1.4f })
             {
-                Block(books, "Mesa_Lectura", new Vector3(tx, 0.38f, 1.5f), new Vector3(1.1f, 0.76f, 7f), wood);
+                Table(books, "Mesa_Lectura", new Vector3(tx, 0, 1.5f), new Vector3(1.1f, 0.76f, 7f), wood);
                 for (var c = 0; c < 5; c++)
                 {
                     var cz = -1.3f + c * 1.4f;

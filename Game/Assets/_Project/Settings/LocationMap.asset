@@ -85,3 +85,21 @@ MonoBehaviour:
     unityScene: CuartoLima
   - scriptScene: 3.11
     unityScene: BusLima
+  - scriptScene: 4.1
+    unityScene: Tintero
+  - scriptScene: 4.2
+    unityScene: Libreria
+  - scriptScene: 4.3
+    unityScene: Azotea
+  - scriptScene: 4.4
+    unityScene: Cuaderno
+  - scriptScene: 4.5
+    unityScene: Cuaderno
+  - scriptScene: 4.6
+    unityScene: Azotea
+  - scriptScene: 4.6b
+    unityScene: Libreria
+  - scriptScene: 4.6c
+    unityScene: Libreria
+  - scriptScene: 4.7
+    unityScene: Azotea

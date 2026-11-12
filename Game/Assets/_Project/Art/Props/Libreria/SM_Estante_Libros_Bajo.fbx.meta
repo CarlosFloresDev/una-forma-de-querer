@@ -137,6 +137,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: M_Corcho
+    second: {fileID: 2100000, guid: 04e047a109f0dad40a1216ca1ff9b4b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: M_Desierto
     second: {fileID: 2100000, guid: 949f0388842aaf24396f2029d6778c6a, type: 2}
   - first:
@@ -272,6 +277,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: M_GatoNegro
+    second: {fileID: 2100000, guid: 09b97d54e24ac454fa7be8c0d18b7b18, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: M_Lana
     second: {fileID: 2100000, guid: e80f1dd56c8ab104bbbf614e49785485, type: 2}
   - first:
@@ -279,6 +289,21 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: M_Letrero
     second: {fileID: 2100000, guid: 4c3285bad5da04f40a840a6e8559c383, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_LibroA
+    second: {fileID: 2100000, guid: 503a5a9b1b859d842842d038b6988d4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_LibroB
+    second: {fileID: 2100000, guid: 95bf68da69c3e3549845ae47b60d7f52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_LibroC
+    second: {fileID: 2100000, guid: 0cfb62fa05bcd374fa75d3df56db50da, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -334,6 +359,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: M_Metal
     second: {fileID: 2100000, guid: 96be7c0c6077ca84fbcae4bf08975e64, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Mimbre
+    second: {fileID: 2100000, guid: 90375a1d172eb6b4687bf217b5c44b3f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -454,6 +484,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: M_Piel
     second: {fileID: 2100000, guid: 794cd291c6160f34f8033378b1a8e1bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Pizarra
+    second: {fileID: 2100000, guid: e08a3f78dfda92c428bf4f695241c572, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: M_Planta
+    second: {fileID: 2100000, guid: 4c1930d160c76214ebaac7e198d10ea4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
