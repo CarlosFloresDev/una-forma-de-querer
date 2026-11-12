@@ -8,7 +8,7 @@ namespace UFQ.Core.Narrative
     /// Es la entidad del dominio: aplica las reglas (ids válidos, idempotencia, topes)
     /// y no sabe nada de Unity, Ink ni de cómo se guarda.
     /// </summary>
-    public sealed class NarrativeState
+    public sealed class NarrativeState : IReadOnlyNarrativeState
     {
         private readonly HashSet<string> _savedSignals = new HashSet<string>();
         private readonly HashSet<string> _notedGestures = new HashSet<string>();
@@ -86,20 +86,20 @@ namespace UFQ.Core.Narrative
 
         public void SetNicoResponse(NicoResponse response)
         {
-            Require(response != NicoResponse.None, "Respuesta de Nico inválida");
+            RequireDefined(response, NicoResponse.None, "Respuesta de Nico inválida");
             NicoResponse = response;
         }
 
         public void SetNewYearWish(NewYearWish wish)
         {
-            Require(wish != NewYearWish.None, "Deseo inválido");
+            RequireDefined(wish, NewYearWish.None, "Deseo inválido");
             NewYearWish = wish;
         }
 
         /// <summary>Decisión principal del Capítulo 3. Solo se toma una vez.</summary>
         public void DecideC3(DecisionC3 decision)
         {
-            Require(decision != DecisionC3.None, "Decisión C3 inválida");
+            RequireDefined(decision, DecisionC3.None, "Decisión C3 inválida");
             Require(DecisionC3 == DecisionC3.None, "La decisión del Capítulo 3 ya se tomó");
             DecisionC3 = decision;
         }
@@ -120,19 +120,20 @@ namespace UFQ.Core.Narrative
 
         public void DecideFinalMessage(FinalMessage message)
         {
-            Require(message != FinalMessage.None, "Mensaje final inválido");
+            RequireDefined(message, FinalMessage.None, "Mensaje final inválido");
             FinalMessage = message;
         }
 
         public void AddWaitTime(double seconds)
         {
-            Require(seconds >= 0, "El tiempo de espera no puede ser negativo");
+            Require(seconds >= 0 && !double.IsNaN(seconds) && !double.IsInfinity(seconds), "Tiempo de espera inválido");
             WaitSecondsTotal += seconds;
         }
 
         /// <summary>Los capítulos solo avanzan; no se puede retroceder sin reiniciar.</summary>
         public void AdvanceTo(Chapter chapter)
         {
+            Require(Enum.IsDefined(typeof(Chapter), chapter), $"Capítulo inexistente: {(int)chapter}");
             Require(chapter >= CurrentChapter, $"No se puede volver de {CurrentChapter} a {chapter}");
             CurrentChapter = chapter;
         }
@@ -145,6 +146,12 @@ namespace UFQ.Core.Narrative
             FinalMessage = FinalMessage.None;
             HonestWithValeria = false;
             HonestWithValeriaDecided = false;
+        }
+
+        /// <summary>El valor debe ser un miembro real del enum (no un número suelto) y distinto de None.</summary>
+        private static void RequireDefined<T>(T value, T none, string message) where T : struct, Enum
+        {
+            Require(Enum.IsDefined(typeof(T), value) && !value.Equals(none), $"{message}: {value}");
         }
 
         private static void Require(bool condition, string message)

@@ -152,6 +152,7 @@ namespace UFQ.Tests.EditMode
 
             public void Save(NarrativeSnapshot snapshot) => Saved = snapshot;
             public void Delete() => Saved = null;
+            public void Quarantine(string reason) => Saved = null;
         }
     }
 }

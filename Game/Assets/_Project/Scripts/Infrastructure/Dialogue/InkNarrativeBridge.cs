@@ -72,7 +72,13 @@ namespace UFQ.Infrastructure.Dialogue
 
         private static T Parse<T>(string value) where T : struct, Enum
         {
-            if (Enum.TryParse(value, true, out T result)) return result;
+            // Solo nombres de miembros: "99" o "3" no valen aunque Enum.TryParse los acepte.
+            if (!string.IsNullOrWhiteSpace(value) && !char.IsDigit(value.Trim()[0]) && value.Trim()[0] != '-'
+                && Enum.TryParse(value, true, out T result) && Enum.IsDefined(typeof(T), result))
+            {
+                return result;
+            }
+
             throw new NarrativeRuleException($"Valor de Ink inválido para {typeof(T).Name}: «{value}»");
         }
 

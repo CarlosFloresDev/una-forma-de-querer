@@ -28,7 +28,9 @@ namespace UFQ.UseCases.Persistence
         public List<string> lensMoments = new List<string>();
         public List<string> chapter5Saves = new List<string>();
 
-        public static NarrativeSnapshot From(NarrativeState s) => new NarrativeSnapshot
+        private static readonly IEnumerable<string> Empty = new string[0];
+
+        public static NarrativeSnapshot From(IReadOnlyNarrativeState s) => new NarrativeSnapshot
         {
             chapter = (int)s.CurrentChapter,
             decisionC3 = (int)s.DecisionC3,
@@ -55,11 +57,11 @@ namespace UFQ.UseCases.Persistence
 
             var s = new NarrativeState();
             s.AdvanceTo((Chapter)chapter);
-            foreach (var id in savedSignals) s.SaveSignal(id);
-            foreach (var id in notedGestures) s.NoticeGesture(id);
-            foreach (var id in dadMemories) s.FindDadMemory(id);
-            foreach (var id in lensMoments) s.ApplyLens(id, LensReading.SomethingMore);
-            foreach (var id in chapter5Saves) s.SaveInChapter5(id);
+            foreach (var id in (IEnumerable<string>)savedSignals ?? Empty) s.SaveSignal(id);
+            foreach (var id in (IEnumerable<string>)notedGestures ?? Empty) s.NoticeGesture(id);
+            foreach (var id in (IEnumerable<string>)dadMemories ?? Empty) s.FindDadMemory(id);
+            foreach (var id in (IEnumerable<string>)lensMoments ?? Empty) s.ApplyLens(id, LensReading.SomethingMore);
+            foreach (var id in (IEnumerable<string>)chapter5Saves ?? Empty) s.SaveInChapter5(id);
             if (decisionC3 != 0) s.DecideC3((DecisionC3)decisionC3);
             if (nicoResponse != 0) s.SetNicoResponse((NicoResponse)nicoResponse);
             if (finalMessage != 0) s.DecideFinalMessage((FinalMessage)finalMessage);
@@ -73,8 +75,15 @@ namespace UFQ.UseCases.Persistence
     /// <summary>Puerto de persistencia. La infraestructura decide dónde y cómo se guarda.</summary>
     public interface INarrativeRepository
     {
+        /// <summary>false si no hay partida o el archivo no se puede leer (ya apartado).</summary>
         bool TryLoad(out NarrativeSnapshot snapshot);
+
+        /// <summary>Guarda de forma atómica. Puede lanzar si el disco falla.</summary>
         void Save(NarrativeSnapshot snapshot);
+
         void Delete();
+
+        /// <summary>Aparta la partida actual sin borrarla (datos inválidos o versión futura).</summary>
+        void Quarantine(string reason);
     }
 }

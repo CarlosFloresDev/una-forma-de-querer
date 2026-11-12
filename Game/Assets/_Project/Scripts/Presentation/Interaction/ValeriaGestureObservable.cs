@@ -9,7 +9,7 @@ namespace UFQ.Presentation.Interaction
     /// Un gesto de Valeria (V1–V7). A propósito NO brilla ni avisa: solo cuenta si el
     /// jugador usa «Mirar» sobre él o elige la respuesta atenta (sección 4.3 del guion).
     /// </summary>
-    public sealed class ValeriaGestureObservable : MonoBehaviour
+    public sealed class ValeriaGestureObservable : MonoBehaviour, ISceneInjectable
     {
         [Tooltip("Id del Anexo C del guion: V1 … V7")]
         [SerializeField] private string gestureId = "V1";

@@ -19,7 +19,7 @@ namespace UFQ.Core.Narrative
     /// <summary>Árbol de decisión del Anexo A, evaluado en orden.</summary>
     public static class EndingResolver
     {
-        public static EndingResult Resolve(NarrativeState state)
+        public static EndingResult Resolve(IReadOnlyNarrativeState state)
         {
             if (state.SavesInChapter5 >= NarrativeCatalog.InfiniteNotebookThreshold)
             {
@@ -41,11 +41,11 @@ namespace UFQ.Core.Narrative
         }
 
         /// <summary>El Epílogo se corta en E.1 si el jugador sigue guardando (final C).</summary>
-        public static bool EpilogueIsCutShort(NarrativeState state) =>
+        public static bool EpilogueIsCutShort(IReadOnlyNarrativeState state) =>
             state.SavesInChapter5 >= NarrativeCatalog.InfiniteNotebookThreshold;
 
         /// <summary>La última página del cuaderno de Andrés (E.3) se ve nítida con los 6 recuerdos.</summary>
-        public static bool FathersLastPageUnlocked(NarrativeState state) =>
+        public static bool FathersLastPageUnlocked(IReadOnlyNarrativeState state) =>
             state.DadMemoriesFound == NarrativeCatalog.DadMemories.Count;
     }
 }

@@ -11,7 +11,7 @@ namespace UFQ.Presentation.Interaction
     /// Solo traduce la interacción del jugador al caso de uso; el brillo, sonido y
     /// partículas se enganchan desde el inspector con los UnityEvent.
     /// </summary>
-    public sealed class SignalInteractable : MonoBehaviour
+    public sealed class SignalInteractable : MonoBehaviour, ISceneInjectable
     {
         [Tooltip("Id del Anexo C del guion: S01 … S17")]
         [SerializeField] private string signalId = "S01";

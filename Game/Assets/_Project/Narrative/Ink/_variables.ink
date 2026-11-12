@@ -27,20 +27,42 @@ EXTERNAL honesto_vale(honesto)
 EXTERNAL mensaje_final(valor)
 
 // --- Versiones de respaldo para probar en Inky sin el juego ---------
+// Reproducen las reglas del dominio: cada id cuenta una sola vez y hay topes
+// (17 señales, 7 gestos, 6 recuerdos, 4 lentes, 3 guardados en el Cap. 5).
+VAR _ids = ""
+
+=== function _contar_una_vez(id)
+// Devuelve true solo la primera vez que se ve este id.
+{ _ids ? ("|" + id + "|"):
+    ~ return false
+}
+~ _ids = _ids + "|" + id + "|"
+~ return true
+
 === function guardar_senal(id)
-~ SENALES = SENALES + 1
+{ SENALES < 17 && _contar_una_vez(id):
+    ~ SENALES = SENALES + 1
+}
 === function notar_gesto(id)
-~ VALE = VALE + 1
+{ VALE < 7 && _contar_una_vez(id):
+    ~ VALE = VALE + 1
+}
 === function recuerdo_papa(id)
-~ RECUERDOS_PAPA = RECUERDOS_PAPA + 1
+{ RECUERDOS_PAPA < 6 && _contar_una_vez(id):
+    ~ RECUERDOS_PAPA = RECUERDOS_PAPA + 1
+}
 === function guardar_c5(id)
-~ GUARDAR_C5 = GUARDAR_C5 + 1
+{ GUARDAR_C5 < 3 && _contar_una_vez(id):
+    ~ GUARDAR_C5 = GUARDAR_C5 + 1
+}
 === function lente(momento, algoMas)
-{ algoMas:
+{ algoMas && LENTE < 4 && _contar_una_vez("lente:" + momento):
     ~ LENTE = LENTE + 1
 }
 === function decidir_c3(valor)
-~ DECISION_C3 = valor
+{ DECISION_C3 == "None":
+    ~ DECISION_C3 = valor
+}
 === function respuesta_nico(valor)
 ~ NICO_RESP = valor
 === function deseo_ano_nuevo(valor)

@@ -6,8 +6,9 @@ using UnityEngine;
 namespace UFQ.Infrastructure.Persistence
 {
     /// <summary>
-    /// Guarda la partida como JSON en persistentDataPath. Escribe primero a un archivo
-    /// temporal y luego lo reemplaza, para que un cierre a mitad no corrompa la partida.
+    /// Guarda la partida como JSON. Escribe a un archivo temporal y luego lo reemplaza,
+    /// para que un cierre a mitad no corrompa la partida. Las partidas ilegibles o
+    /// inválidas se apartan con un nombre único y nunca se borran.
     /// </summary>
     public sealed class JsonNarrativeRepository : INarrativeRepository
     {
@@ -31,15 +32,16 @@ namespace UFQ.Infrastructure.Persistence
             try
             {
                 snapshot = JsonUtility.FromJson<NarrativeSnapshot>(File.ReadAllText(_path));
-                return snapshot != null;
             }
             catch (Exception e)
             {
-                // Una partida ilegible no debe impedir jugar: se aparta y se empieza de cero.
-                Debug.LogError($"[UFQ] Partida dañada, se aparta: {e.Message}");
-                File.Copy(_path, _path + ".corrupta", true);
+                Quarantine($"JSON ilegible: {e.Message}");
                 return false;
             }
+
+            if (snapshot != null) return true;
+            Quarantine("JSON vacío");
+            return false;
         }
 
         public void Save(NarrativeSnapshot snapshot)
@@ -61,6 +63,23 @@ namespace UFQ.Infrastructure.Persistence
         public void Delete()
         {
             if (File.Exists(_path)) File.Delete(_path);
+        }
+
+        public void Quarantine(string reason)
+        {
+            if (!File.Exists(_path)) return;
+
+            var target = $"{_path}.apartada-{DateTime.Now:yyyyMMdd-HHmmss}-{Guid.NewGuid().ToString("N").Substring(0, 6)}";
+            try
+            {
+                // Mover (no copiar): así el siguiente arranque no repite el mismo fallo.
+                File.Move(_path, target);
+                Debug.LogWarning($"[UFQ] Partida apartada en {target}. Motivo: {reason}");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[UFQ] No se pudo apartar la partida ({reason}): {e.Message}");
+            }
         }
     }
 }
