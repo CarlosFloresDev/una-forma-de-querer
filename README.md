@@ -2,7 +2,7 @@
 
 Juego narrativo en 3D ambientado en **Arequipa, Perú**, sobre el miedo más callado de todos: confundir cariño con amor. La historia recorre Arequipa, Mollendo, Lima y el Valle del Colca. Lo desarrolla **Feka Studios**. Estado: **en desarrollo**.
 
-Página del juego: https://feka-studios.chefsitturchey.workers.dev/una-forma-de-querer
+Página del juego: https://feka-studios.pages.dev/una-forma-de-querer
 
 ## Tecnología
 
